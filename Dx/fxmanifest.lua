@@ -1,0 +1,5 @@
+fx_version 'cerulean'
+game 'gta5'
+version '3.0.0'
+description 'Dx Np 4.0 inspried Server'
+server_script 'server.lua'

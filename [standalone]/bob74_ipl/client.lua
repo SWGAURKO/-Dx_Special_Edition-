@@ -21,11 +21,9 @@ Citizen.CreateThread(function()
     -- Trevor: 1985.48132, 3828.76757, 32.5
     TrevorsTrailer.LoadDefault()
 
-    -- Bahama Mamas: -1388.0013, -618.41967, 30.819599
-    BahamaMamas.Enable(true)
 
     -- Pillbox hospital: 307.1680, -590.807, 43.280
-    PillboxHospital.Enable(true)
+    PillboxHospital.Enable(false)
 
     -- Zancudo Gates (GTAO like): -1600.30100000, 2806.73100000, 18.79683000
     ZancudoGates.LoadDefault()
@@ -33,7 +31,6 @@ Citizen.CreateThread(function()
     -- Other
     Ammunations.LoadDefault()
     LesterFactory.LoadDefault()
-    StripClub.LoadDefault()
 
     Graffitis.Enable(true)
 
@@ -139,10 +136,6 @@ Citizen.CreateThread(function()
     -- ====================================================================
     -- =------------------- [DLC: Diamond Casino Resort] -----------------=
     -- ====================================================================
-    if GetGameBuildNumber() >= 2060 then
-        DiamondCasino.LoadDefault() -- 1100.000, 220.000, -50.000
-        DiamondPenthouse.LoadDefault() -- 976.636, 70.295, 115.164
-    end
 
     -- ====================================================================
     -- =------------------- [DLC: Los Santos Tuners] ---------------------=

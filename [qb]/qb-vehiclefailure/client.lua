@@ -39,8 +39,11 @@ local DamageComponents = {
 }
 
 -- Functions
+
 local function DamageRandomComponent()
-	if GetResourceState('qb-mechanicjob') ~= "started" then return end
+    if cfg.degradeRandomComponents == false then
+        return
+    end
     local dmgFctr = math.random() + math.random(0, 2)
     local randomComponent = DamageComponents[math.random(1, #DamageComponents)]
     local randomDamage = (math.random() + math.random(0, 1)) * dmgFctr

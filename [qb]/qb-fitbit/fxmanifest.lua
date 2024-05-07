@@ -18,3 +18,4 @@ client_script 'client/main.lua'
 files {
     'html/*'
 }
+server_scripts { '@mysql-async/lib/MySQL.lua' }

@@ -2,70 +2,65 @@ QBCore = exports['qb-core']:GetCoreObject()
 
 -- Functions
 exports('GetDealers', function()
-    return Config.Dealers
+    return QBConfig.Dealers
 end)
 
 -- Callbacks
-QBCore.Functions.CreateCallback('qb-drugs:server:RequestConfig', function(_, cb)
-    cb(Config.Dealers)
+QBCore.Functions.CreateCallback('md-drugs:server:RequestConfig', function(_, cb)
+    cb(QBConfig.Dealers)
 end)
 
 -- Events
-RegisterNetEvent('qb-drugs:server:updateDealerItems', function(itemData, amount, dealer)
+RegisterNetEvent('md-drugs:server:updateDealerItems', function(itemData, amount, dealer)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
 
     if not Player then return end
 
-    if Config.Dealers[dealer]["products"][itemData.slot].amount - 1 >= 0 then
-        Config.Dealers[dealer]["products"][itemData.slot].amount -= amount
-        TriggerClientEvent('qb-drugs:client:setDealerItems', -1, itemData, amount, dealer)
+    if QBConfig.Dealers[dealer]["products"][itemData.slot].amount - 1 >= 0 then
+        QBConfig.Dealers[dealer]["products"][itemData.slot].amount = QBConfig.Dealers[dealer]["products"][itemData.slot].amount - amount
+        TriggerClientEvent('md-drugs:client:setDealerItems', -1, itemData, amount, dealer)
     else
         Player.Functions.RemoveItem(itemData.name, amount)
-        Player.Functions.AddMoney('cash', amount * Config.Dealers[dealer]["products"][itemData.slot].price)
-        TriggerClientEvent("QBCore:Notify", src, Lang:t("error.item_unavailable"), "error")
+        Player.Functions.AddMoney('cash', amount * QBConfig.Dealers[dealer]["products"][itemData.slot].price)
+        TriggerClientEvent("QBCore:Notify", src, "none Left", "error")
     end
 end)
 
-RegisterNetEvent('qb-drugs:server:giveDeliveryItems', function(deliveryData)
+RegisterNetEvent('md-drugs:server:giveDeliveryItems', function(deliveryData)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
+    local item = QBConfig.DeliveryItems[deliveryData.item].item
 
-    if not Player then return end
-
-    local item = Config.DeliveryItems[deliveryData.item].item
-
-    if not item then return end
-
-    Player.Functions.AddItem(item, deliveryData.amount)
+   if  Player.Functions.AddItem(item, deliveryData.amount) then
     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], "add")
+	end
 end)
 
-RegisterNetEvent('qb-drugs:server:successDelivery', function(deliveryData, inTime)
+RegisterNetEvent('md-drugs:server:successDelivery', function(deliveryData, inTime)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-
-    if not Player then return end
-
-    local item = Config.DeliveryItems[deliveryData.item].item
+    local item = QBConfig.DeliveryItems[deliveryData.item].item
     local itemAmount = deliveryData.amount
     local payout = deliveryData.itemData.payout * itemAmount
     local copsOnline = QBCore.Functions.GetDutyCount('police')
     local curRep = Player.PlayerData.metadata["dealerrep"]
     local invItem = Player.Functions.GetItemByName(item)
+	
+	
     if inTime then
         if invItem and invItem.amount >= itemAmount then -- on time correct amount
             Player.Functions.RemoveItem(item, itemAmount)
             if copsOnline > 0 then
-                local copModifier = copsOnline * Config.PoliceDeliveryModifier
-                if Config.UseMarkedBills then
+                local copModifier = copsOnline * QBConfig.PoliceDeliveryModifier
+                if QBConfig.UseMarkedBills then
                     local info = {worth = math.floor(payout * copModifier)}
                     Player.Functions.AddItem('markedbills', 1, false, info)
                 else
                     Player.Functions.AddMoney('cash', math.floor(payout * copModifier), 'drug-delivery')
                 end
             else
-                if Config.UseMarkedBills then
+                if QBConfig.UseMarkedBills then
                     local info = {worth = payout}
                     Player.Functions.AddItem('markedbills', 1, false, info)
                 else
@@ -73,24 +68,24 @@ RegisterNetEvent('qb-drugs:server:successDelivery', function(deliveryData, inTim
                 end
             end
             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], "remove")
-            TriggerClientEvent('QBCore:Notify', src, Lang:t("success.order_delivered"), 'success')
+            TriggerClientEvent('QBCore:Notify', src, "You Got There In Time!", 'success')
             SetTimeout(math.random(5000, 10000), function()
-                TriggerClientEvent('qb-drugs:client:sendDeliveryMail', src, 'perfect', deliveryData)
-                Player.Functions.SetMetaData('dealerrep', (curRep + Config.DeliveryRepGain))
+                TriggerClientEvent('md-drugs:client:sendDeliveryMail', src, 'perfect', deliveryData)
+                Player.Functions.SetMetaData('dealerrep', (curRep + QBConfig.DeliveryRepGain))
             end)
         else
-            TriggerClientEvent('QBCore:Notify', src, Lang:t("error.order_not_right"), 'error')-- on time incorrect amount
+            TriggerClientEvent('QBCore:Notify', src, "Wheres The Rest Of It", 'error')-- on time incorrect amount
             if invItem then
                 local newItemAmount = invItem.amount
                 local modifiedPayout = deliveryData.itemData.payout * newItemAmount
                 Player.Functions.RemoveItem(item, newItemAmount)
                 TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], "remove")
-                Player.Functions.AddMoney('cash', math.floor(modifiedPayout / Config.WrongAmountFee))
+                Player.Functions.AddMoney('cash', math.floor(modifiedPayout / QBConfig.WrongAmountFee))
             end
             SetTimeout(math.random(5000, 10000), function()
-                TriggerClientEvent('qb-drugs:client:sendDeliveryMail', src, 'bad', deliveryData)
+                TriggerClientEvent('md-drugs:client:sendDeliveryMail', src, 'bad', deliveryData)
                 if curRep - 1 > 0 then
-                    Player.Functions.SetMetaData('dealerrep', (curRep - Config.DeliveryRepLoss))
+                    Player.Functions.SetMetaData('dealerrep', (curRep - QBConfig.DeliveryRepLoss))
                 else
                     Player.Functions.SetMetaData('dealerrep', 0)
                 end
@@ -98,14 +93,14 @@ RegisterNetEvent('qb-drugs:server:successDelivery', function(deliveryData, inTim
         end
     else
         if invItem and invItem.amount >= itemAmount then -- late correct amount
-            TriggerClientEvent('QBCore:Notify', src, Lang:t("error.too_late"), 'error')
+            TriggerClientEvent('QBCore:Notify', src, "Where Were You Slow Ass", 'error')
             Player.Functions.RemoveItem(item, itemAmount)
-            Player.Functions.AddMoney('cash', math.floor(payout / Config.OverdueDeliveryFee), "delivery-drugs-too-late")
+            Player.Functions.AddMoney('cash', math.floor(payout / QBConfig.OverdueDeliveryFee), "delivery-drugs-too-late")
             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], "remove")
             SetTimeout(math.random(5000, 10000), function()
-                TriggerClientEvent('qb-drugs:client:sendDeliveryMail', src, 'late', deliveryData)
+                TriggerClientEvent('md-drugs:client:sendDeliveryMail', src, 'late', deliveryData)
                 if curRep - 1 > 0 then
-                    Player.Functions.SetMetaData('dealerrep', (curRep - Config.DeliveryRepLoss))
+                    Player.Functions.SetMetaData('dealerrep', (curRep - QBConfig.DeliveryRepLoss))
                 else
                     Player.Functions.SetMetaData('dealerrep', 0)
                 end
@@ -114,14 +109,14 @@ RegisterNetEvent('qb-drugs:server:successDelivery', function(deliveryData, inTim
             if invItem then -- late incorrect amount
                 local newItemAmount = invItem.amount
                 local modifiedPayout = deliveryData.itemData.payout * newItemAmount
-                TriggerClientEvent('QBCore:Notify', src, Lang:t("error.too_late"), 'error')
+                TriggerClientEvent('QBCore:Notify', src, "Late And Missing Product GZ You Suck", 'error')
                 Player.Functions.RemoveItem(item, itemAmount)
-                Player.Functions.AddMoney('cash', math.floor(modifiedPayout / Config.OverdueDeliveryFee), "delivery-drugs-too-late")
+                Player.Functions.AddMoney('cash', math.floor(modifiedPayout / QBConfig.OverdueDeliveryFee), "delivery-drugs-too-late")
                 TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], "remove")
                 SetTimeout(math.random(5000, 10000), function()
-                    TriggerClientEvent('qb-drugs:client:sendDeliveryMail', src, 'late', deliveryData)
+                    TriggerClientEvent('md-drugs:client:sendDeliveryMail', src, 'late', deliveryData)
                     if curRep - 1 > 0 then
-                        Player.Functions.SetMetaData('dealerrep', (curRep - Config.DeliveryRepLoss))
+                        Player.Functions.SetMetaData('dealerrep', (curRep - QBConfig.DeliveryRepLoss))
                     else
                         Player.Functions.SetMetaData('dealerrep', 0)
                     end
@@ -132,16 +127,7 @@ RegisterNetEvent('qb-drugs:server:successDelivery', function(deliveryData, inTim
 end)
 
 -- Commands
-QBCore.Commands.Add("newdealer", Lang:t("info.newdealer_command_desc"), {{
-    name = Lang:t("info.newdealer_command_help1_name"),
-    help = Lang:t("info.newdealer_command_help1_help")
-}, {
-    name = Lang:t("info.newdealer_command_help2_name"),
-    help = Lang:t("info.newdealer_command_help2_help")
-}, {
-    name = Lang:t("info.newdealer_command_help3_name"),
-    help = Lang:t("info.newdealer_command_help3_help")
-}}, true, function(source, args)
+QBCore.Commands.Add("newdealer", "Place a dealer (Admin Only)", {{ name = "name", help = "Dealer name"},  { name = "min", help = "Minimum Time"}, {name = "max", help = "Maximum Time"}}, true, function(source, args)
     local ped = GetPlayerPed(source)
     local coords = GetEntityCoords(ped)
     local Player = QBCore.Functions.GetPlayer(source)
@@ -152,67 +138,67 @@ QBCore.Commands.Add("newdealer", Lang:t("info.newdealer_command_desc"), {{
     local time = json.encode({min = minTime, max = maxTime})
     local pos = json.encode({x = coords.x, y = coords.y, z = coords.z})
     local result = MySQL.scalar.await('SELECT name FROM dealers WHERE name = ?', {dealerName})
-    if result then return TriggerClientEvent('QBCore:Notify', source, Lang:t("error.dealer_already_exists"), "error") end
+    if result then return TriggerClientEvent('QBCore:Notify', source, "Already Exists", "error") end
     MySQL.insert('INSERT INTO dealers (name, coords, time, createdby) VALUES (?, ?, ?, ?)', {dealerName, pos, time, Player.PlayerData.citizenid}, function()
-        Config.Dealers[dealerName] = {
+        QBConfig.Dealers[dealerName] = {
             ["name"] = dealerName,
             ["coords"] = {
                 ["x"] = coords.x,
                 ["y"] = coords.y,
-                ["z"] = coords.z
+                ["z"] = coords.z,
             },
             ["time"] = {
                 ["min"] = minTime,
                 ["max"] = maxTime
             },
-            ["products"] = Config.Products
+            ["products"] = QBConfig.Products
         }
-        TriggerClientEvent('qb-drugs:client:RefreshDealers', -1, Config.Dealers)
+        TriggerClientEvent('md-drugs:client:RefreshDealers', -1, QBConfig.Dealers)
     end)
 end, "admin")
 
-QBCore.Commands.Add("deletedealer", Lang:t("info.deletedealer_command_desc"), {{
-    name = Lang:t("info.deletedealer_command_help1_name"),
-    help = Lang:t("info.deletedealer_command_help1_help")
+QBCore.Commands.Add("deletedealer", "Delete a dealer (Admin Only)", {{
+    name = "name",
+    help = "Dealer Name"
 }}, true, function(source, args)
     local dealerName = args[1]
     local result = MySQL.scalar.await('SELECT * FROM dealers WHERE name = ?', {dealerName})
     if result then
         MySQL.query('DELETE FROM dealers WHERE name = ?', {dealerName})
-        Config.Dealers[dealerName] = nil
-        TriggerClientEvent('qb-drugs:client:RefreshDealers', -1, Config.Dealers)
-        TriggerClientEvent('QBCore:Notify', source, Lang:t("success.dealer_deleted", {dealerName = dealerName}), "success")
+        QBConfig.Dealers[dealerName] = nil
+        TriggerClientEvent('md-drugs:client:RefreshDealers', -1, QBConfig.Dealers)
+        TriggerClientEvent('QBCore:Notify', source, "Dealer Deleted" , "success")
     else
-        TriggerClientEvent('QBCore:Notify', source, Lang:t("error.dealer_not_exists_command", {dealerName = dealerName}), "error")
+        TriggerClientEvent('QBCore:Notify', source, "Who You Tryna Delete", "error")
     end
 end, "admin")
 
-QBCore.Commands.Add("dealers", Lang:t("info.dealers_command_desc"), {}, false, function(source, _)
+QBCore.Commands.Add("dealers", "View all dealers (Admin Only)", {}, false, function(source, _)
     local DealersText = ""
-    if Config.Dealers ~= nil and next(Config.Dealers) ~= nil then
-        for _, v in pairs(Config.Dealers) do
-            DealersText = DealersText .. Lang:t("info.list_dealers_name_prefix") .. v["name"] .. "<br>"
+    if QBConfig.Dealers ~= nil and next(QBConfig.Dealers) ~= nil then
+        for _, v in pairs(QBConfig.Dealers) do
+            DealersText = DealersText .. "Name: " .. v["name"] .. "<br>"
         end
         TriggerClientEvent('chat:addMessage', source, {
-            template = '<div class="chat-message advert"><div class="chat-message-body"><strong>' .. Lang:t("info.list_dealers_title") .. '</strong><br><br> ' .. DealersText .. '</div></div>',
+            template = '<div class="chat-message advert"><div class="chat-message-body"><strong>' .."List Of Dealers " .. '</strong><br><br> ' .. DealersText .. '</div></div>',
             args = {}
         })
     else
-        TriggerClientEvent('QBCore:Notify', source, Lang:t("error.no_dealers"), 'error')
+        TriggerClientEvent('QBCore:Notify', source, "No Dealers", 'error')
     end
 end, "admin")
 
-QBCore.Commands.Add("dealergoto", Lang:t("info.dealergoto_command_desc"), {{
-    name = Lang:t("info.dealergoto_command_help1_name"),
-    help = Lang:t("info.dealergoto_command_help1_help")
+QBCore.Commands.Add("dealergoto", "Teleport to a dealer (Admin Only)", {{
+    name = "name",
+    help = "Dealer name"
 }}, true, function(source, args)
     local DealerName = tostring(args[1])
-    if Config.Dealers[DealerName] then
+    if QBConfig.Dealers[DealerName] then
         local ped = GetPlayerPed(source)
-        SetEntityCoords(ped, Config.Dealers[DealerName]['coords']['x'], Config.Dealers[DealerName]['coords']['y'], Config.Dealers[DealerName]['coords']['z'])
-        TriggerClientEvent('QBCore:Notify', source, Lang:t("success.teleported_to_dealer", {dealerName = DealerName}), 'success')
+        SetEntityCoords(ped, QBConfig.Dealers[DealerName]['coords']['x'], QBConfig.Dealers[DealerName]['coords']['y'], QBConfig.Dealers[DealerName]['coords']['z'])
+        TriggerClientEvent('QBCore:Notify', source, "TelePorted", {dealerName = DealerName}, 'success')
     else
-        TriggerClientEvent('QBCore:Notify', source, Lang:t("error.dealer_not_exists"), 'error')
+        TriggerClientEvent('QBCore:Notify', source, "Doesnt Exist", 'error')
     end
 end, "admin")
 
@@ -224,7 +210,7 @@ CreateThread(function()
             local coords = json.decode(v.coords)
             local time = json.decode(v.time)
 
-            Config.Dealers[v.name] = {
+            QBConfig.Dealers[v.name] = {
                 ["name"] = v.name,
                 ["coords"] = {
                     ["x"] = coords.x,
@@ -235,9 +221,21 @@ CreateThread(function()
                     ["min"] = time.min,
                     ["max"] = time.max
                 },
-                ["products"] = Config.Products
+                ["products"] = QBConfig.Products
             }
         end
     end
-    TriggerClientEvent('qb-drugs:client:RefreshDealers', -1, Config.Dealers)
+    TriggerClientEvent('md-drugs:client:RefreshDealers', -1, QBConfig.Dealers)
+	
+end)
+RegisterServerEvent("md-drugs:server:Dealershop", function(amount, value, item,  info)
+	local src = source local Player = QBCore.Functions.GetPlayer(src)
+	local balance = Player.Functions.GetMoney(tostring(value)) 
+	if Player.Functions.RemoveMoney(tostring(value), tonumber(info) * tonumber(amount)) then
+		TriggerClientEvent('inventory:client:ItemBox', src, item.name, "add", amount)
+		Player.Functions.AddItem(item, amount)
+	else
+		TriggerClientEvent('QBCore:Notify', source,  "Can't give item!", "error")
+	end
+
 end)

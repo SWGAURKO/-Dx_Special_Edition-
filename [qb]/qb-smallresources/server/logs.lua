@@ -39,6 +39,9 @@ local Webhooks = {
     ['palert'] = '',
     ['house'] = '',
     ['qbjobs'] = '',
+    ['cuffplayer'] = '',
+    ['evidencestash'] = '',
+    ['pdarmory'] = '',
 }
 
 local Colors = { -- https://www.spycolor.com/

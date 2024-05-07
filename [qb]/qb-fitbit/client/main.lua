@@ -66,15 +66,13 @@ RegisterNetEvent('hud:client:UpdateNeeds', function(newHunger, newThirst)
     if PlayerData.metadata["fitbit"].food then
         if newHunger < PlayerData.metadata["fitbit"].food then
             TriggerEvent("chatMessage", Lang:t('info.fitbit'), "warning", Lang:t('warning.hunger_warning', {hunger = round(newHunger, 2)}))
-
             PlaySound(-1, "Event_Start_Text", "GTAO_FM_Events_Soundset", 0, 0, 1)
         end
     end
 
     if PlayerData.metadata["fitbit"].thirst then
         if newThirst < PlayerData.metadata["fitbit"].thirst then
-            TriggerEvent("chatMessage", Lang:t('info.fitbit'), "warning", Lang:t('warning.thirst_warning', {hunger = round(newHunger, 2)}))
-
+            TriggerEvent("chatMessage", Lang:t('info.fitbit'), "warning", Lang:t('warning.thirst_warning', {thirst = round(newThirst, 2)}))
             PlaySound(-1, "Event_Start_Text", "GTAO_FM_Events_Soundset", 0, 0, 1)
         end
     end

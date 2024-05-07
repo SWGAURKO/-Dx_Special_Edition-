@@ -16,20 +16,6 @@ local function DecorSet(Type, Value)
     end
 end
 
-function engineLoop()
-    local ped = PlayerPedId()
-    if DoesEntityExist(ped) and IsPedInAnyVehicle(ped, false) and IsControlPressed(2, 75) and not IsEntityDead(ped) and not IsPauseMenuActive() then
-        local engineWasRunning = GetIsVehicleEngineRunning(GetVehiclePedIsIn(ped, true))
-        Wait(1500)
-        if DoesEntityExist(ped) and not IsPedInAnyVehicle(ped, false) and not IsEntityDead(ped) and not IsPauseMenuActive() then
-            local veh = GetVehiclePedIsIn(ped, true)
-            if engineWasRunning then
-                SetVehicleEngineOn(veh, true, true, true)
-            end
-        end
-    end
-end
-
 exports('DecorSet', DecorSet)
 
 CreateThread(function()
@@ -46,7 +32,7 @@ CreateThread(function()
         end
 
         DisplayAmmoThisFrame(displayAmmo)
-        engineLoop()
+        
         -- Density
 
         SetParkedVehicleDensityMultiplierThisFrame(Config.Density['parked'])
@@ -55,18 +41,6 @@ CreateThread(function()
         SetPedDensityMultiplierThisFrame(Config.Density['peds'])
         SetScenarioPedDensityMultiplierThisFrame(Config.Density['scenario'], Config.Density['scenario']) -- Walking NPC Density
         Wait(0)
-    end
-end)
-
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(1000)
-            if IsPedInAnyVehicle(PlayerPedId()) then
-                SetUserRadioControlEnabled(false)
-                if GetPlayerRadioStationName() ~= nil then
-                SetVehRadioStation(GetVehiclePedIsIn(PlayerPedId()),"OFF")
-            end
-        end
     end
 end)
 

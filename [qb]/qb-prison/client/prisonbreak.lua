@@ -24,13 +24,6 @@ local Gates = {
 
 -- Functions
 
---- This will be triggered once a hack is done on a gate
---- @param success boolean
---- @return nil
-local function OnHackDone(success)
-    Config.OnHackDone(success, currentGate, Gates[currentGate])
-end
-
 --- This will draw 3d text at the given location with the given text
 --- @param x number
 --- @param y number
@@ -42,11 +35,11 @@ local function DrawText3D(x, y, z, text)
     SetTextFont(4)
     SetTextProportional(1)
     SetTextColour(255, 255, 255, 215)
-    SetTextEntry("STRING")
+    BeginTextCommandDisplayText("STRING")
     SetTextCentre(true)
-    AddTextComponentString(text)
+    AddTextComponentSubstringPlayerName(text)
     SetDrawOrigin(x,y,z, 0)
-    DrawText(0.0, 0.0)
+    EndTextCommandDisplayText(0.0, 0.0)
     local factor = (string.len(text)) / 370
     DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
     ClearDrawOrigin()
@@ -83,8 +76,13 @@ RegisterNetEvent('electronickit:UseElectronickit', function()
                 flags = 16,
             }, {}, {}, function() -- Done
                 StopAnimTask(PlayerPedId(), "anim@gangops@facility@servers@", "hotwire", 1.0)
-                TriggerEvent("mhacking:show")
-                TriggerEvent("mhacking:start", math.random(5, 9), math.random(10, 18), OnHackDone)
+                local success = exports['qb-minigames']:Hacking(5, 30) -- code block size & seconds to solve
+                if success then
+                    TriggerServerEvent("prison:server:SetGateHit", currentGate)
+                    TriggerServerEvent('qb-doorlock:server:updateState', Gates[currentGate].gatekey, false, false, false, true)
+                else
+                    TriggerServerEvent("prison:server:SecurityLockdown")
+                end
             end, function() -- Cancel
                 StopAnimTask(PlayerPedId(), "anim@gangops@facility@servers@", "hotwire", 1.0)
                 QBCore.Functions.Notify(Lang:t("error.cancelled"), "error")

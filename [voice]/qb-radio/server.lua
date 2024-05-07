@@ -10,3 +10,5 @@ for channel, config in pairs(Config.RestrictedChannels) do
         return config[Player.PlayerData.job.name] and Player.PlayerData.job.onduty
     end)
 end
+
+

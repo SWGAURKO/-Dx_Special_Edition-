@@ -17,6 +17,43 @@ QBCore.Functions.CreateUseableItem("harness", function(source, item)
     TriggerClientEvent('seatbelt:client:UseHarness', source, item)
 end)
 
+QBCore.Functions.CreateUseableItem("caramelojoint", function(source, item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+	if Player.Functions.RemoveItem(item.name, 1, item.slot) then
+        TriggerClientEvent("consumables:client:UseCarameloJoint", src)
+    end
+end)
+
+QBCore.Functions.CreateUseableItem("medicaljoint", function(source, item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+	if Player.Functions.RemoveItem(item.name, 1, item.slot) then
+        TriggerClientEvent("consumables:client:UseMedicalJoint", src)
+    end
+end)
+
+QBCore.Functions.CreateUseableItem("hazeheavenjoint", function(source, item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+	if Player.Functions.RemoveItem(item.name, 1, item.slot) then
+        TriggerClientEvent("consumables:client:UseHazeHeavenJoint", src)
+    end
+end)
+
+QBCore.Functions.CreateUseableItem("joint", function(source, item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+
+    if Player.Functions.GetItemByName("lighter") then
+        if Player.Functions.RemoveItem(item.name, 1, item.slot) then
+            TriggerClientEvent("consumables:client:UseJoint", src)
+        end    
+    else
+        TriggerClientEvent("QBCore:Notify", source, "You don't have a lighter", "error")
+    end
+end)
+
 RegisterNetEvent('equip:harness', function(item)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)

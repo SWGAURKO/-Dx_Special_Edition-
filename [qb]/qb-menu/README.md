@@ -1,7 +1,11 @@
-# qb-menu
+# nmsh-menu
 Menu System for the QBCore Framework
 
-This is a modified version of **[NH Context](https://forum.cfx.re/t/no-longer-supported-standalone-nerohiro-s-context-menu-dynamic-event-firing-menu/2564083)** by **[NeroHiro](https://github.com/nerohiro)**
+# My Discord Server
+https://discord.gg/AXEVAqH7yX
+
+![Uploading image.png…](https://cdn.discordapp.com/attachments/1195409963024142346/1195409963544215643/image.png?ex=65b3e348&is=65a16e48&hm=6e6668fc0202973c29a25a29e835fd48e830e9fbcdb2029e0de6eead72185570&)
+
 
 --[[
 EXAMPLE MENU
@@ -64,21 +68,3 @@ RegisterNetEvent('qb-menu:client:testButton', function(data)
     TriggerEvent('QBCore:Notify', data.message)
 end)
 ```
-
-# License
-
-    QBCore Framework
-    Copyright (C) 2021 Joshua Eger
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>

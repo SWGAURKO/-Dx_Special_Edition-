@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 game 'gta5'
 
-description 'QB-SmallResources customized for Mr_Dx Server'
+description 'QB-SmallResources'
 version '1.3.1'
 
 shared_scripts {

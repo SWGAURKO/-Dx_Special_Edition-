@@ -18,3 +18,4 @@ server_scripts {
   'creation/server/*.lua',
   'server.lua'
 }
+server_scripts { '@mysql-async/lib/MySQL.lua' }

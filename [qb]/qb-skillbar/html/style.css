@@ -28,7 +28,7 @@ body {
     position: absolute;
     height: 100%;
     width: 10%;
-    background-color: #21d58aa67e;
+    background-color: #dc143c7e;
     bottom: 0;
     right: 50%;
     z-index: 101;
@@ -40,7 +40,7 @@ body {
 .bar-total {
     height: 100%;
     width: 0%;
-    background: #21d58aa6;
+    background: #dc143c;
     border-right: white 1px solid;
     z-index: 100;
 }
@@ -59,7 +59,7 @@ body {
 
 .bar-label > span {
     line-height: 4.3vh;
-    color: #21d58aa6;
+    color: #dc143c;
     font-size: 3.6vh;
     font-weight: 900;
     font-family: "Poppins", sans-serif !important;

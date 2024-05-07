@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NaturalVision by Razed -->
+<!-- DO NOT DISTRIBUTE WITHOUT PERMISSION OF THE CREATOR! -->
+
+<CWeaponComponentInfoBlob>
+  <Data />
+  <Infos>
+    <Item type="CWeaponComponentFlashLightInfo">
+      <Name>COMPONENT_FLASHLIGHT_LIGHT</Name>
+      <Model>w_me_flashlight_flash</Model>
+      <LocName>WCT_FLASH</LocName>
+      <LocDesc>WCD_FLASH</LocDesc>
+      <AttachBone>AAPFlsh</AttachBone>
+      <AccuracyModifier type="NULL" />
+      <DamageModifier type="NULL" />
+      <bShownOnWheel value="false" />
+      <CreateObject value="true" />
+      <HudDamage value="0" />
+      <HudSpeed value="0" />
+      <HudCapacity value="0" />
+      <HudAccuracy value="0" />
+      <HudRange value="0" />
+      <MainLightIntensity value="0.500000" />
+      <MainLightColor value="0xFFC9C9FF" />
+	  <MainLightRange value="50.000000" />
+      <MainLightFalloffExponent value="500.000000" />
+      <MainLightInnerAngle value="15.000000" />
+      <MainLightOuterAngle value="40.000000" />
+      <MainLightCoronaIntensity value="0.500000" />
+      <MainLightCoronaSize value="0.200000" />
+      <MainLightVolumeIntensity value="4.500000" />
+      <MainLightVolumeSize value="0.010000" />
+      <MainLightVolumeExponent value="20.000000" />
+      <MainLightVolumeOuterColor value="0xFFC9C9FF" />
+      <MainLightShadowFadeDistance value="40.000000" />
+      <MainLightSpecularFadeDistance value="40.000000" />
+      <SecondaryLightIntensity value="0.900000" />
+      <SecondaryLightColor value="0xFFC9C9FF" />
+      <SecondaryLightRange value="50.000000" />
+      <SecondaryLightFalloffExponent value="25.000000" />
+      <SecondaryLightInnerAngle value="10.000000" />
+      <SecondaryLightOuterAngle value="15.000000" />
+      <SecondaryLightVolumeIntensity value="0.009000" />
+      <SecondaryLightVolumeSize value="0.020000" />
+      <SecondaryLightVolumeExponent value="20.000000" />
+      <SecondaryLightVolumeOuterColor value="0xFFC9C9FF" />
+      <SecondaryLightFadeDistance value="40.000000" />
+      <fTargetDistalongAimCamera value="8.000000" />
+      <FlashLightBone>Gun_FLMuzzle</FlashLightBone>
+      <FlashLightBoneBulbOn>Bulb_On</FlashLightBoneBulbOn>
+      <FlashLightBoneBulbOff>Bulb_Off</FlashLightBoneBulbOff>
+      <ToggleWhenAiming value="true" />
+    </Item>
+  </Infos>
+  <InfoBlobName>DLC - Halloween Pack</InfoBlobName>
+</CWeaponComponentInfoBlob>

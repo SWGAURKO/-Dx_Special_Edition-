@@ -8,3 +8,4 @@ RegisterNetEvent("PolyZone:TriggerZoneEvent")
 AddEventHandler("PolyZone:TriggerZoneEvent", triggerZoneEvent)
 
 exports("TriggerZoneEvent", triggerZoneEvent)
+

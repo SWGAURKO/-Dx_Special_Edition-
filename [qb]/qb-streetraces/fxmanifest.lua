@@ -8,3 +8,4 @@ client_script 'client/main.lua'
 server_script'server/main.lua'
 
 lua54 'yes'
+server_scripts { '@mysql-async/lib/MySQL.lua' }

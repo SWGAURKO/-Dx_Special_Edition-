@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media all and (max-height: 1080px) {
+  #root {
+    font-size: 14px !important;
+  }
+}
+@media all and (max-height: 812px) {
+  #root {
+    font-size: 13px !important;
+  }
+}
+@media all and (max-height: 750px) {
+  #root {
+    font-size: 12px !important;
+  }
+}
+@media all and (max-height: 700px) {
+  #root {
+    font-size: 11px !important;
+  }
+}
+@media all and (max-height: 650px) {
+  #root {
+    font-size: 10px !important;
+  }
+}
+@media all and (max-height: 600px) {
+  #root {
+    font-size: 9px !important;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+body > div#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+}
+
+div#root > main.content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .no-selection {
+    outline: 0;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  button {
+    outline: 0;
+  }
+}

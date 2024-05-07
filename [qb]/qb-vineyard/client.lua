@@ -330,3 +330,6 @@ Zones[3].zone:onPlayerInOut(function(isPointInside)
 		exports['qb-core']:HideText()
 	end
 end)
+
+
+

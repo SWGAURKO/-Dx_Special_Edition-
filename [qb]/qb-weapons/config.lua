@@ -1,6 +1,6 @@
 Config = Config or {}
 
-Config.ReloadTime = math.random(4000, 6000)
+Config.ReloadTime = math.random(1000, 2000)
 
 Config.DurabilityBlockedWeapons = {
     "weapon_stungun",
@@ -152,28 +152,6 @@ Config.DurabilityMultiplier = {
     ['weapon_fireextinguisher']      = 0.15,
     ['weapon_hazardcan']             = 0.15,
     ['weapon_fertilizercan']         = 0.15,
-
-    -- Custom
-    ['WEAPON_uzi'] 			    = 0.15,
-    ['WEAPON_mac10'] 	        = 0.15,
-    ['WEAPON_groza'] 			= 0.15,
-    ['WEAPON_mp9'] 		        = 0.15,
-    ['WEAPON_dp9'] 			    = 0.15,
-    ['WEAPON_browning'] 	    = 0.15,
-    ['WEAPON_dildo'] 		    = 0.15,
-    ['WEAPON_riftedge'] 	    = 0.15,
-    ['WEAPON_katana'] 	        = 0.15,
-    ['WEAPON_keyboard'] 	    = 0.15,
-    ['WEAPON_krambit'] 	        = 0.15,
-    ['WEAPON_gepard'] 			= 0.15,
-    ['WEAPON_draco'] 		    = 0.15,
-    ['WEAPON_g18c'] 		    = 0.15,
-    ['weapon_sword'] 	        = 0.15,
-    ['WEAPON_BEANBAG'] 	        = 0.15,
-    ['WEAPON_mp5'] 		        = 0.15,
-    ['WEAPON_M67'] 		        = 0.15,
-    ['WEAPON_m45a1'] 		    = 0.15,
-    
 }
 
 Config.WeaponRepairPoints = {
@@ -194,27 +172,6 @@ Config.WeaponRepairCosts = {
 }
 
 WeaponAttachments = {
-    -- CUSTOM
-    ['WEAPON_m45a1'] = {
-        ['defaultclip'] = {
-            component = 'COMPONENT_M45A1_CLIP_01',
-            item = 'pistol_defaultclip',
-            type = 'clip',
-        },
-        ['extendedclip'] = {
-            component = 'COMPONENT_M45A1_CLIP_02',
-            item = 'pistol_extendedclip',
-            type = 'clip',
-        },
-        ['suppressor'] = {
-            component = 'COMPONENT_M45A1_SUPP_01',
-            item = 'pistol_suppressor',
-        },
-        ['flashlight'] = {
-            component = 'COMPONENT_M45A1_FLSH_01',
-            item = 'pistol_suppressor',
-        },
-    },
     -- PISTOLS
     ['WEAPON_PISTOL'] = {
         ['defaultclip'] = {

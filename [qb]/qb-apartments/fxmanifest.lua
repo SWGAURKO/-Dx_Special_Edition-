@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 game 'gta5'
 
-description 'QB-Apartments customized for Mr_Dx Server'
+description 'QB-Apartments'
 version '2.2.1'
 
 shared_scripts {
@@ -26,7 +26,6 @@ client_scripts {
 dependencies {
     'qb-core',
     'qb-interior',
- --   'qb-clothing',
     'qb-weathersync',
 }
 

@@ -66,7 +66,13 @@ CreateThread(function()
 end)
 
 if Config.IdleCamera then --Disable Idle Cinamatic Cam
-    DisableIdleCamera(true)
+    CreateThread(function()
+        while true do
+            InvalidateIdleCam()
+            InvalidateVehicleIdleCam()
+            Wait(1000) --The idle camera activates after 30 second so we don't need to call this per frame
+        end
+    end)
 end
 
 RegisterNetEvent('QBCore:Client:DrawWeapon', function()
@@ -113,113 +119,36 @@ CreateThread(function()
     end
 end)
 
--- turn off aim assiest 
-CreateThread(function()-- probably just add this to an existing script
-    while true do
-        Wait(500)-- can set to 0 if needed 
-        local gamepad = GetLastInputMethod(2)
-        if not gamepad then
-           SetPlayerTargetingMode(3)--set targeting to "free-aim" if a controller is being used
-        else
-            Wait(2000)--wait if the player is using a keyboard
+CreateThread(function()
+    while Config.RemovePistolWhipping do
+        if IsPedArmed(PlayerPedId(), 6) then
+            DisableControlAction(1, 140, true)
+            DisableControlAction(1, 141, true)
+            DisableControlAction(1, 142, true)
         end
+        Wait(5)
     end
 end)
 
--- No helmet in an vehicle
-
-CreateThread(function()
-    while true do
-        local sleep = 750
-        if IsPedInAnyVehicle(playerped, false) and allowshuffle == false then
-            sleep = 250
-            SetPedConfigFlag(playerped, 184, true)
-            if GetIsTaskActive(playerped, 165) then
-                seat = 0
-                if GetPedInVehicleSeat(currentvehicle, -1) == playerped then
-                    seat =- 1
-                end
-                SetPedIntoVehicle(playerped, currentvehicle, seat)
-            end
-        elseif IsPedInAnyVehicle(playerped, false) and allowshuffle == true then
-            SetPedConfigFlag(playerped, 184, false)
-        end
-        Citizen.Wait(sleep)
-    end
-end)
-
-----wrong mussle punch error issue fixed 
--- Prevent props (hat, glasses, etc.) from falling off when punched
-
-CreateThread(function()
-    while true do
-    if PlayerPedId() ~= lastped then
-        lastped = PlayerPedId()
-        SetPedCanLosePropsOnDamage(PlayerPedId(), false, 0)
-    end
-    Wait(100)
-    end
-end)
-
-----train auto
-CreateThread(function() -- TRAIN SPAWNS / SPAWN TRAINS
-    SwitchTrainTrack(0, true)
-    SwitchTrainTrack(3, true)
-    N_0x21973bbf8d17edfa(0, 120000)
-    SetRandomTrains(true)
-end)
-
-----regenarate helth over time 
-CreateThread(function()
+Citizen.CreateThread(function()
     while true do
         local ped = PlayerPedId()
-        local maxHealth = GetEntityMaxHealth(ped)
-        local health = GetEntityHealth(ped)
-        Wait(1000)
+        local weapon = GetSelectedPedWeapon(ped)
+		if weapon ~= GetHashKey("WEAPON_UNARMED") then
+			if IsPedArmed(ped, 6) then
+				DisableControlAction(1, 140, true)
+				DisableControlAction(1, 141, true)
+				DisableControlAction(1, 142, true)
+			end
 
-        local newHealth = GetEntityHealth(ped)
-        if newHealth < health then
-            Wait(60000)
-        else
-            if health < maxHealth and health >= 100 and not InLaststand and not isDead then
-                SetEntityHealth(ped, health + 2)
-            end
-        end
-    end
-end)
-
--- anty bunny hop
-
-CreateThread(function()
-    while true do
-        Wait(100)
-        local ped = PlayerPedId()
-        if IsPedOnFoot(ped) and not IsPedSwimming(ped) and (IsPedRunning(ped) or IsPedSprinting(ped)) and not IsPedClimbing(ped) and IsPedJumping(ped) and not IsPedRagdoll(ped) then
-            local chance_result = math.random()
-            --You can change the chance as you want! Just changed 0.2!
-            if chance_result < 0.2 then 
-                Wait(600)
-                ShakeGameplayCam('SMALL_EXPLOSION_SHAKE', 0.10)
-                -- QBCore.Functions.Notify("You are too tired!", 'error', 2500)
-                SetPedToRagdoll(ped, 5000, 1, 2)
-            else
-                Wait(2000)
-            end
-        end
-    end
-end)
-
-----pistol wiping
-
-CreateThread(function()
-    while(true)do
-            if globalIsPedArmed then
-                DisableControlAction(1, 140, true)
-                DisableControlAction(1, 141, true)
-                DisableControlAction(1, 142, true)
-            else
-                Wait(100)
-            end
-        Wait(0)
+			if weapon == GetHashKey("WEAPON_FIREEXTINGUISHER")then
+				if IsPedShooting(ped) then
+					SetPedInfiniteAmmo(ped, true, GetHashKey("WEAPON_FIREEXTINGUISHER"))
+				end
+			end
+		else
+			Citizen.Wait(500)
+		end
+        Citizen.Wait(7)
     end
 end)

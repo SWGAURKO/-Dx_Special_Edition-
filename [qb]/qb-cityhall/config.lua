@@ -6,25 +6,21 @@ Config.AvailableJobs = { -- Only used when not using qb-jobs.
     ["trucker"] = {["label"] = "Trucker", ["isManaged"] = false},
     ["taxi"] = {["label"] = "Taxi", ["isManaged"] = false},
     ["tow"] = {["label"] = "Tow Truck", ["isManaged"] = false},
+    ["reporter"] = {["label"] = "News Reporter", ["isManaged"] = false},
     ["garbage"] = {["label"] = "Garbage Collector", ["isManaged"] = false},
     ["bus"] = {["label"] = "Bus Driver", ["isManaged"] = false},
-    ["burgershot"] = {["label"] = "Burger Shot", ["isManaged"] = false},    
-    ["thunter"] = {["label"] = "Treassure Hunter", ["isManaged"] = false},
-    ["fisher"] = {["label"] = "Fisher", ["isManaged"] = false},
-    ["cargo"] = {["label"] = "Cargo Delivery", ["isManaged"] = false},
-    ["scrap"] = {["label"] = "Scrap Miner", ["isManaged"] = false},
-
+    ["hotdog"] = {["label"] = "Hot Dog Stand", ["isManaged"] = false}
 }
 
 Config.Cityhalls = {
     { -- Cityhall 1
-        coords = vec3(-1291.9508, -572.3750, 29.5727),
+        coords = vec3(-552.7, -193.62, 38.22),
         showBlip = true,
         blipData = {
-            sprite = 176,
+            sprite = 438,
             display = 4,
-            scale = 0.75,
-            colour = 69,
+            scale = 0.85,
+            colour = 25,
             title = "City Services"
         },
         licenses = {
@@ -51,9 +47,9 @@ Config.DrivingSchools = {
         coords = vec3(240.3, -1379.89, 33.74),
         showBlip = true,
         blipData = {
-            sprite = 225,
+            sprite = 764,
             display = 4,
-            scale = 0.65,
+            scale = 0.75,
             colour = 3,
             title = "Driving School"
         },
@@ -69,7 +65,7 @@ Config.Peds = {
     -- Cityhall Ped
     {
         model = 'a_m_m_hasjew_01',
-        coords = vec4(-1291.9508, -572.3750, 29.5727, 315.8414),
+        coords = vec4(-552.7, -193.62, 37.22, 210.34),
         scenario = 'WORLD_HUMAN_STAND_MOBILE',
         cityhall = true,
         zoneOptions = { -- Used for when UseTarget is false
@@ -81,7 +77,7 @@ Config.Peds = {
     -- Driving School Ped
     {
         model = 'a_m_m_eastsa_02',
-        coords = vec4(240.91, -1379.2, 32.74, 138.96),
+        coords = vec4(217.73, -1398.89, 29.60, 49.84),
         scenario = 'WORLD_HUMAN_STAND_MOBILE',
         drivingschool = true,
         zoneOptions = { -- Used for when UseTarget is false

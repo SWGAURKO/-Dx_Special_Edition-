@@ -67,3 +67,5 @@ HLApartment1 = {
         RefreshInterior(HLApartment1.interiorId)
     end
 }
+
+

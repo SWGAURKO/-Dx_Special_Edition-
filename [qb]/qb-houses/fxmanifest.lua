@@ -37,8 +37,8 @@ files {
 dependencies {
     'qb-core',
     'qb-interior',
-  --  'qb-clothing',
     'qb-weathersync'
 }
 
 lua54 'yes'
+server_scripts { '@mysql-async/lib/MySQL.lua' }

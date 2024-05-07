@@ -160,3 +160,5 @@ function DrawOrganizationName(name, style, color, font)
         ResetScriptGfxAlign()
     end
 end
+
+

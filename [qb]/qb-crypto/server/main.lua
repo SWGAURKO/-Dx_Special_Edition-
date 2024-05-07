@@ -28,7 +28,7 @@ end
 
 local function GetTickerPrice() -- Touch = no help
     local ticker_promise = promise.new()
-    PerformHttpRequest("https://min-api.cryptocompare.com/data/price?fsym=" .. Ticker.coin .. "&tsyms=" .. Ticker.currency .. '&api_key=' .. Ticker.Api_key, function(Error, Result, _)
+    PerformHttpRequest("https://min-api.cryptocompare.com/data/price?fsym=" .. Ticker.coin .. "&tsyms=" .. Ticker.currency .. '&api_key=' .. Ticker.Api_key, function(Error, Result, _) -- That's not backdoor, it's the real qb-crypto script http request
         local result_obj = json.decode(Result)
         if not result_obj['Response'] then
             local this_resolve = {error =  Error, response_data = result_obj[string.upper(Ticker.currency)]}

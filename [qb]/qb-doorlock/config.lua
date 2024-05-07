@@ -11,7 +11,7 @@ Config.SaveDoorDialog = true -- Saves the door dialogue popup between door saves
 Config.PersistentDoorStates = false -- Persists the door state between server restarts
 Config.PersistentSaveInternal = 60000 -- How often door states are saved to the file system, in miliseconds. 
 
-Config.ChangeColor = false -- Change the color of the box of the popup text based on if it is locked or not
+Config.ChangeColor = true -- Change the color of the box of the popup text based on if it is locked or not
 Config.DefaultColor = 'rgb(19, 28, 74)' -- The default color of the box of the popup text if Config.ChangeColor is false
 Config.LockedColor = 'rgb(219 58 58)' -- The color of the box of the popup text if Config.ChangeColor is true and the door is locked
 Config.UnlockedColor = 'rgb(27 195 63)' -- The color of the box of the popup text if Config.ChangeColor is true and the door is unlocked
@@ -211,7 +211,7 @@ Config.DoorList = {
 	{
 		textCoords = vec3(434.81, -981.93, 30.89),
 		authorizedJobs = { 'police' },
-		locked = true,
+		locked = false,
 		pickable = false,
 		distance = 2.5,
 		doors = {
@@ -397,7 +397,7 @@ Config.DoorList = {
 	{
 		textCoords = vec3(455.86, -981.31, 26.86),
 		authorizedJobs = { 'police' },
-		locked = true,
+		locked = false,
 		pickable = false,
 		distance = 2.5,
 		doors = {

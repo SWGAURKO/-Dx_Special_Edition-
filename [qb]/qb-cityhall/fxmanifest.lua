@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 game 'gta5'
 
-description 'QB-CityHall customized for Mr_Dx Server'
+description 'QB-CityHall'
 version '2.1.3'
 
 ui_page 'html/index.html'

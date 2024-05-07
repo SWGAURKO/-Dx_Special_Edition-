@@ -2,45 +2,27 @@ Config = {}
 
 Config.UseTarget = GetConvar('UseTarget', 'false') == 'true' -- Use qb-target interactions (don't change this, go to your server.cfg and add `setr UseTarget true` to use this and just that from true to false or the other way around)
 
-local isServer = IsDuplicityVersion()
-if not isServer then
-    --- This function will be triggered once the hack is done
-    --- @param success boolean
-    --- @param currentGate number
-    --- @param gateData table
-    --- @return nil
-    function Config.OnHackDone(success, currentGate, gateData)
-        if success then
-            TriggerServerEvent("prison:server:SetGateHit", currentGate)
-            TriggerServerEvent('qb-doorlock:server:updateState', gateData.gatekey, false, false, false, true)
-        else
-            TriggerServerEvent("prison:server:SecurityLockdown")
-        end
-        TriggerEvent('mhacking:hide')
-    end
-end
-
 Config.Jobs = {
     ["electrician"] = "Electrician"
 }
 
-Config.Uniforms ={
+Config.Uniforms = {
     ['male'] = {
-        outfitData ={
-            ['t-shirt'] = {item = 15, texture = 0},
-            ['torso2'] = {item = 345, texture = 0},
-			['arms'] = {item = 19, texture = 0},
-			['pants'] = {item = 3, texture = 7},
-			['shoes'] = {item = 1, texture = 0},
+        outfitData = {
+            ['t-shirt'] = { item = 15, texture = 0 },
+            ['torso2'] = { item = 345, texture = 0 },
+            ['arms'] = { item = 19, texture = 0 },
+            ['pants'] = { item = 3, texture = 7 },
+            ['shoes'] = { item = 1, texture = 0 },
         }
     },
     ['female'] = {
-        outfitData ={
-            ['t-shirt'] = {item = 14, texture = 0},
-			['torso2'] = {item = 370, texture = 0},
-			['arms'] = {item = 0, texture = 0},
-			['pants'] = {item = 0, texture = 12},
-			['shoes'] = {item = 1, texture = 0},
+        outfitData = {
+            ['t-shirt'] = { item = 14, texture = 0 },
+            ['torso2'] = { item = 370, texture = 0 },
+            ['arms'] = { item = 0, texture = 0 },
+            ['pants'] = { item = 0, texture = 12 },
+            ['shoes'] = { item = 1, texture = 0 },
         }
     },
 }
@@ -72,19 +54,22 @@ Config.Locations = {
         }
     },
     ["freedom"] = {
-        coords = vector4(1740.88, 2476.57, 44.85, 299.49)
+        coords = vector4(1840.37, 2577.76, 46.01, 356.8)
     },
     ["outside"] = {
-        coords = vector4(1848.13, 2586.05, 44.67, 269.5)
+        coords = vector4(1848.06, 2586.1, 45.67, 279.4)
     },
     ["yard"] = {
-        coords = vector4(1765.67, 2565.91, 44.56, 1.5)
+        coords = vector4(1753.83, 2501.59, 45.61, 27.63)
     },
     ["middle"] = {
-        coords = vector4(1693.33, 2569.51, 44.55, 123.5)
+        coords = vector4(1693.33, 2569.51, 45.55, 123.5)
     },
     ["shop"] = {
-        coords = vector4(1777.59, 2560.52, 44.62, 187.83)
+        coords = vector4(1786.19, 2557.77, 45.62, 0.5)
+    },
+    ["pharmacy"] = {
+        coords = vector4(1765.63, 2565.08, 45.57, 4.59)
     },
     spawns = {
         [1] = {

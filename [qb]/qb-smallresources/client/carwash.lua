@@ -102,17 +102,3 @@ CreateThread(function()
     end
 end)
 
-CreateThread(function()
-    for k in pairs(Config.CarWash) do
-        local coords = Config.CarWash[k]["poly"]["coords"]
-        local carWash = AddBlipForCoord(coords.x, coords.y, coords.z)
-        SetBlipSprite (carWash, 100)
-        SetBlipDisplay(carWash, 4)
-        SetBlipScale  (carWash, 0.75)
-        SetBlipAsShortRange(carWash, true)
-        SetBlipColour(carWash, 37)
-        BeginTextCommandSetBlipName("STRING")
-        AddTextComponentSubstringPlayerName(Config.CarWash[k]["label"])
-        EndTextCommandSetBlipName(carWash)
-    end
-end)

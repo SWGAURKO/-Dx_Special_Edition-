@@ -17,3 +17,5 @@ RegisterNetEvent('qb-fitbit:server:setValue', function(type, value)
     }
     Player.Functions.SetMetaData('fitbit', fitbitData)
 end)
+
+

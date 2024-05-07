@@ -1,12 +1,11 @@
 let mouseOver = false;
-let selectedIdentity = null;
-let selectedIdentityType = null;
-let selectedIdentityCost = null;
+let selectedLisences = null;
+let selectedLisencesType = null;
+let selectedLisencesCost = null;
 let selectedJob = null;
 let selectedJobId = null;
 
-Open = function(jobs) {
-    SetJobs(jobs);
+Open = function() {
     $(".container").fadeIn(150);
 }
 
@@ -16,20 +15,19 @@ Close = function() {
     });
     $.post('https://qb-cityhall/close');
     $(selectedJob).removeClass("job-selected");
-    $(selectedIdentity).removeClass("job-selected");
+    $(selectedLisences).removeClass("job-selected");
 }
 
 SetJobs = function(jobs) {
-    $('.job-page-blocks').empty();
     $.each(jobs, (job, name) => {
-        let html = `<div class="job-page-block" data-job="${job}"><p>${name.label}</p></div>`;
+        let html = `<div class="job-page-block" data-job="${job}"><p>${name}</p></div>`;
         $('.job-page-blocks').append(html);
     })
 }
 
 ResetPages = function() {
     $(".cityhall-option-blocks").show();
-    $(".cityhall-identity-page").hide();
+    $(".cityhall-Lisences-page").hide();
     $(".cityhall-job-page").hide();
 }
 
@@ -37,7 +35,7 @@ $(document).ready(function(){
     window.addEventListener('message', function(event) {
         switch(event.data.action) {
             case "open":
-                Open(event.data.jobs);
+                Open();
                 break;
             case "close":
                 Close();
@@ -63,44 +61,44 @@ $('.cityhall-option-block').click(function(e){
     $(".cityhall-option-blocks").fadeOut(100, () => {
         $(`.cityhall-${blockPage}-page`).fadeIn(100);
     });
-    if (blockPage == "identity") {
-        $(".identity-page-blocks").html("");
+    if (blockPage == "Lisences") {
+        $(".Lisences-page-blocks").html("");
         $.post('https://qb-cityhall/requestLicenses', JSON.stringify({}), function(licenses){
             $.each(licenses, (i, license) => {
-                let elem = `<div class="identity-page-block" data-type="${i}" data-cost="${license.cost}"><p>${license.label}</p></div>`;
-                $(".identity-page-blocks").append(elem);
+                let elem = `<div class="Lisences-page-block" data-type="${i}" data-cost="${license.cost}"><p>${license.label}</p></div>`;
+                $(".Lisences-page-blocks").append(elem);
             });
         });
     }
 });
 
-$(document).on("click", ".identity-page-block", function(e){
+$(document).on("click", ".Lisences-page-block", function(e){
     e.preventDefault();
-    selectedIdentityType = $(this).data('type');
-    selectedIdentityCost = $(this).data('cost');
-    if (selectedIdentity == null) {
-        $(this).addClass("identity-selected");
+    selectedLisencesType = $(this).data('type');
+    selectedLisencesCost = $(this).data('cost');
+    if (selectedLisences == null) {
+        $(this).addClass("Lisences-selected");
         $(".hover-description").fadeIn(10);
-        selectedIdentity = this;
-        $(".request-identity-button").fadeIn(100);
-        $(".request-identity-button").html(`<p>Buy $${selectedIdentityCost}</p>`);
-    } else if (selectedIdentity == this) {
-        $(this).removeClass("identity-selected");
-        selectedIdentity = null;
-        $(".request-identity-button").fadeOut(100);
+        selectedLisences = this;
+        $(".request-Lisences-button").fadeIn(100);
+        $(".request-Lisences-button").html(`<p>Buy $${selectedLisencesCost}</p>`);
+    } else if (selectedLisences == this) {
+        $(this).removeClass("Lisences-selected");
+        selectedLisences = null;
+        $(".request-Lisences-button").fadeOut(100);
     } else {
-        $(selectedIdentity).removeClass("identity-selected");
-        $(this).addClass("identity-selected");
-        selectedIdentity = this;
-        $(".request-identity-button").html("<p>Buy</p>");
+        $(selectedLisences).removeClass("Lisences-selected");
+        $(this).addClass("Lisences-selected");
+        selectedLisences = this;
+        $(".request-Lisences-button").html("<p>Buy</p>");
     }
 });
 
-$(".request-identity-button").click(function(e){
+$(".request-Lisences-button").click(function(e){
     e.preventDefault();
     $.post('https://qb-cityhall/requestId', JSON.stringify({
-        type: selectedIdentityType,
-        cost: selectedIdentityCost
+        type: selectedLisencesType,
+        cost: selectedLisencesCost
     }))
     ResetPages();
 });
@@ -108,7 +106,6 @@ $(".request-identity-button").click(function(e){
 $(document).on("click", ".job-page-block", function(e){
     e.preventDefault();
     selectedJobId = $(this).data('job');
-//    selectedJobId["application"] = $(this).data('application')
     if (selectedJob == null) {
         $(this).addClass("job-selected");
         selectedJob = this;
@@ -133,6 +130,6 @@ $(document).on('click', '.apply-job-button', function(e){
 $(document).on('click', '.back-to-main', function(e){
     e.preventDefault();
     $(selectedJob).removeClass("job-selected");
-    $(selectedIdentity).removeClass("job-selected");
+    $(selectedLisences).removeClass("job-selected");
     ResetPages();
 });

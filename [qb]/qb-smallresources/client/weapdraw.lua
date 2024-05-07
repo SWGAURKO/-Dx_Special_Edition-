@@ -1,4 +1,33 @@
 local weapons = {
+    	--Custom Weapon
+	'WEAPON_AK47',
+	'WEAPON_M9',
+	'WEAPON_FNX45',
+	'WEAPON_DE',
+	'WEAPON_GLOCK17',
+	'WEAPON_M4',
+	'WEAPON_HK416',
+	'WEAPON_MK14',
+	'WEAPON_HUNTINGRIFLE',
+	'WEAPON_AR15',
+	'WEAPON_M70',
+	'WEAPON_M1911',
+	'WEAPON_MAC10',
+	'WEAPON_UZI',
+	'WEAPON_MP9',
+	'WEAPON_M110',
+	'WEAPON_MOSSBERG',
+	'WEAPON_REMINGTON',
+	'WEAPON_SCARH',
+	'WEAPON_SHIV',
+	'WEAPON_KATANA',
+	'WEAPON_SLEDGEHAMMER',
+	'WEAPON_COLBATON',
+	'WEAPON_MP5',
+	'WEAPON_GLOCK18C',
+	'WEAPON_GLOCK22',
+	'WEAPON_AKS74',
+	'WEAPON_AK74',
     'WEAPON_KNIFE',
     'WEAPON_NIGHTSTICK',
     'WEAPON_BREAD',
@@ -70,30 +99,22 @@ local weapons = {
     'WEAPON_COMPACTLAUNCHER',
     'WEAPON_PIPEBOMB',
     'WEAPON_DOUBLEACTION',
-    
-	-- Custom-Weapons
-	'WEAPON_uzi',
-	'WEAPON_mac10',
-	'WEAPON_groza',
-	'WEAPON_mp9',
-	'WEAPON_dp9',
-	'WEAPON_browning',
-	'WEAPON_dildo',
-	'WEAPON_riftedge',
-	'WEAPON_m4a1',
-	'WEAPON_katana',
-    'WEAPON_keyboard',
-    'WEAPON_krambit',
-    'WEAPON_gepard',
-    'WEAPON_draco',
-    'WEAPON_g18c',
-    'WEAPON_glock22',
-    'WEAPON_mp5',
-    'weapon_sword',
-    'WEAPON_M67',
-    'WEAPON_BEANBAG',
-    'WEAPON_M4',
-    'WEAPON_M45A1',
+	'WEAPON_SNOWBALL',
+	'WEAPON_PISTOLXM3',
+	'WEAPON_CANDYCANE'
+}
+
+--Weapons that require the Police holster animation
+local holsterableWeapons = {
+	--'WEAPON_STUNGUN',
+	--Custom Weapon
+	'WEAPON_DE',
+	'WEAPON_GLOCK17',
+	'WEAPON_M9',
+	'WEAPON_M1911',
+	'WEAPON_FNX45',
+	'WEAPON_GLOCK18C',
+	'WEAPON_GLOCK22',
 }
 
 local holstered = true
@@ -139,7 +160,7 @@ RegisterNetEvent('weapons:ResetHolster', function()
 end)
 
 RegisterNetEvent('weapons:client:DrawWeapon', function()
-    if GetResourceState('qb-inventory') == 'missing' then return end -- This part is only made to work with qb-inventory, other inventories might conflict
+    if GetResourceState('ps-inventory') == 'missing' then return end -- This part is only made to work with ps-inventory, other inventories might conflict
     local sleep
     local weaponcheck = 0
     while true do
@@ -322,7 +343,7 @@ end)
 
 function CeaseFire()
     CreateThread(function()
-        if GetResourceState('qb-inventory') == 'missing' then return end -- This part is only made to work with qb-inventory, other inventories might conflict
+        if GetResourceState('ps-inventory') == 'missing' then return end -- This part is only made to work with ps-inventory, other inventories might conflict
         while not canFire do
             DisableControlAction(0, 25, true)
             DisablePlayerFiring(PlayerId(), true)

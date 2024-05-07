@@ -1,0 +1,1 @@
+SteamApiKey = "" --Steam api key for profile photos.

@@ -91,3 +91,7 @@ QBCore.Functions.CreateCallback('qb-pawnshop:server:getInv', function(source, cb
     local inventory = Player.PlayerData.items
     return cb(inventory)
 end)
+
+
+
+

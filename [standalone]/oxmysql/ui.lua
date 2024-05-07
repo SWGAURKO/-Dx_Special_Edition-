@@ -22,3 +22,4 @@ RegisterNetEvent('oxmysql:loadResource', function(data)
         data = data
     })
 end)
+

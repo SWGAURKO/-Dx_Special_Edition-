@@ -1,16 +1,24 @@
 Config = {}
 
+-- Vehicle lock settings
+Config.LockToggleAnimation = {
+    AnimDict = 'anim@mp_player_intmenu@key_fob@',
+    Anim = 'fob_click',
+    Prop = 'prop_cuff_keys_01',
+    PropBone = 57005,
+    WaitTime = 500,
+}
+Config.LockAnimSound = "keys"
+Config.LockToggleSound = "lock"
+Config.LockToggleDist = 8.0
+
 -- NPC Vehicle Lock States
 Config.LockNPCDrivingCars = true -- Lock state for NPC cars being driven by NPCs [true = locked, false = unlocked]
 Config.LockNPCParkedCars = true -- Lock state for NPC parked cars [true = locked, false = unlocked]
-Config.UseKeyfob = true -- you can set this true if you dont need ui
+Config.UseKeyfob = false -- you can set this true if you dont need ui
 -- Lockpick Settings
 Config.RemoveLockpickNormal = 0.5 -- Chance to remove lockpick on fail
 Config.RemoveLockpickAdvanced = 0.2 -- Chance to remove advanced lockpick on fail
-Config.LockPickDoorEvent = function() -- This function is called when a player attempts to lock pick a vehicle
-    TriggerEvent('Dx-lockpick:client:openLockpick', LockpickFinishCallback)
-end
-
 -- Carjack Settings
 Config.CarJackEnable = true -- True allows for the ability to car jack peds.
 Config.CarjackingTime = 7500 -- How long it takes to carjack
@@ -45,24 +53,7 @@ Config.SharedKeys = { -- Share keys amongst employees. Employees can lock/unlock
         requireOnduty = false,
         vehicles = {
 	    'police', -- Vehicle model
-	    'police2',
-        'police3',
-        'police4',
-        'policeb',
-        'policet',
-        'socharger',
-        'sodurango',
-        'soexplorer',
-        'sotaurus',
-        'sotruck',
-        'mach1rb',
-        'poldemonrb',
-        'zr1RB',
-        'polamggtr',
-        'polchiron',
-        'polp1',
-        'foxctnp',
-        'rr69chargerpd',
+	    'police2', -- Vehicle model
 	}
     },
 

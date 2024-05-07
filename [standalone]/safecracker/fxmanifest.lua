@@ -9,10 +9,6 @@ client_scripts {
   'client.lua'
 }
 
-server_scripts {
-	"server.lua"
-}
-
 files { 
   'LockPart1.png',
   'LockPart2.png',

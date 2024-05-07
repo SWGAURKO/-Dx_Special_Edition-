@@ -2,19 +2,19 @@ Config = {}
 
 Config.Debug = false
 
-Config.ClothingCost = 100
-Config.BarberCost = 100
-Config.TattooCost = 100
-Config.SurgeonCost = 100
+Config.ClothingCost = 80
+Config.BarberCost = 40
+Config.TattooCost = 60
+Config.SurgeonCost = 3750
 
 Config.ChargePerTattoo = true -- Charge players per tattoo. Config.TattooCost will become the cost of 1 tattoo. The cost can be overridden by adding `cost` key in shared/tattoos.lua for specific tattoos
 
 -- Only set this to true if you're using rcore_tattoos
 Config.RCoreTattoosCompatibility = false
 
-Config.AsynchronousLoading = false -- Change this to false if you want the NUI data to load before displaying the appearance UI
+Config.AsynchronousLoading = true -- Change this to false if you want the NUI data to load before displaying the appearance UI
 
-Config.UseTarget = true
+Config.UseTarget = false
 
 Config.TextUIOptions = {
     position = "left-center"
@@ -27,19 +27,19 @@ Config.NotifyOptions = {
 Config.OutfitCodeLength = 10
 
 Config.UseRadialMenu = false
-Config.UseOxRadial = false -- Set to true to use ox_lib radial menu, both this and UseRadialMenu must be true 
+Config.UseOxRadial = false -- Set to true to use ox_lib radial menu, both this and UseRadialMenu must be true
 
-Config.EnablePedsForShops = true
-Config.EnablePedsForClothingRooms = true
-Config.EnablePedsForPlayerOutfitRooms = true
+Config.EnablePedsForShops = false
+Config.EnablePedsForClothingRooms = false
+Config.EnablePedsForPlayerOutfitRooms = false
 
 Config.EnablePedMenu = true
 Config.PedMenuGroup = "group.admin"
 
-Config.EnableJobOutfitsCommand = false -- Enables /joboutfits and /gangoutfits commands
+Config.EnableJobOutfitsCommand = true -- Enables /joboutfits and /gangoutfits commands
 
 Config.ShowNearestShopOnly = false
-Config.HideRadar = false -- Hides the minimap while the appearance menu is open
+Config.HideRadar = true -- Hides the minimap while the appearance menu is open
 Config.NearestShopBlipUpdateDelay = 10000
 
 Config.InvincibleDuringCustomization = true
@@ -64,10 +64,10 @@ Config.GenderBasedOnPed = true
 
 Config.AlwaysKeepProps = false
 
-Config.PersistUniforms = false -- Keeps Job / Gang Outfits on player reconnects / logout
-Config.OnDutyOnlyClothingRooms = false -- Set to `true` to make the clothing rooms accessible only to players who are On Duty
+Config.PersistUniforms = true -- Keeps Job / Gang Outfits on player reconnects / logout
+Config.OnDutyOnlyClothingRooms = true -- Set to `true` to make the clothing rooms accessible only to players who are On Duty
 
-Config.BossManagedOutfits = false -- Allows Job / Gang bosses to manage their own job / gang outfits
+Config.BossManagedOutfits = true -- Allows Job / Gang bosses to manage their own job / gang outfits
 
 Config.ReloadSkinCooldown = 5000
 
@@ -102,8 +102,8 @@ Config.DisableProps = {
 Config.Blips = {
     ["clothing"] = {
         Show = true,
-        Sprite = 366,
-        Color = 47,
+        Sprite = 73,
+        Color = 0,
         Scale = 0.7,
         Name = "Clothing Store",
     },
@@ -122,7 +122,7 @@ Config.Blips = {
         Name = "Tattoo Shop",
     },
     ["surgeon"] = {
-        Show = true,
+        Show = false,
         Sprite = 102,
         Color = 4,
         Scale = 0.7,
@@ -545,15 +545,12 @@ Config.Stores = {
     },
     {
         type = "surgeon",
-        coords = vector4(298.78, -572.81, 43.26, 114.27),
+        coords = vector4(310.39, -587.6, 43.27, 161.29),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
         points = {
-            vector3(298.84417724609, -572.92205810547, 43.26),
-            vector3(296.39556884766, -575.65942382812, 43.26),
-            vector3(293.56317138672, -572.60675048828, 43.26),
-            vector3(296.28656005859, -570.330078125, 43.26)
+            vector3(310.39, -587.6, 43.27)
         }
     }
 }
@@ -561,22 +558,86 @@ Config.Stores = {
 
 Config.ClothingRooms = {
     {
-        job = "police",
-        coords = vector4(454.91, -990.89, 30.69, 193.4),
+        job = "lspd",
+        coords = vector4(462.34, -999.65, 30.69, 185.59),
+        size = vector3(8, 8, 8),
+        rotation = 45,
+        usePoly = false,
+        points = {
+            vector3(462.34, -999.65, 30.69),
+            vector3(467.54, -999.75, 30.69)
+        }
+    },
+    {
+        job = "davispd",
+        coords = vector4(362.49, -1593.17, 25.45, 50.03),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
         points = {
-            vector3(460.41918945312, -993.11444091797, 30.69),
-            vector3(449.39508056641, -993.60614013672, 30.69),
-            vector3(449.88696289062, -990.23779296875, 30.69),
-            vector3(450.97882080078, -989.71411132812, 30.69),
-            vector3(451.0325012207, -987.89904785156, 30.69),
-            vector3(453.47863769531, -987.76928710938, 30.69),
-            vector3(454.35513305664, -988.46459960938, 30.69),
-            vector3(460.4231262207, -987.94573974609, 30.69)
+            vector3(362.49, -1593.17, 25.45)
         }
-    }
+    },
+    {
+        job = "rangerpd",
+        coords = vector4(384.65, 794.32, 187.68, 92.25),
+        size = vector3(3, 3, 3),
+        rotation = 45,
+        usePoly = false,
+        points = {
+            vector3(384.65, 794.32, 187.68)
+        }
+    },
+    {
+        job = "sandysheriff",
+        coords = vector4(1839.04, 3678.28, 38.93, 118.93),
+        size = vector3(3, 3, 3),
+        rotation = 45,
+        usePoly = false,
+        points = {
+            vector3(1839.04, 3678.28, 38.93)
+        }
+    },
+    {
+        job = "paletosheriff",
+        coords = vector4(-439.07, 6008.22, 37.0, 227.23),
+        size = vector3(3, 3, 3),
+        rotation = 45,
+        usePoly = false,
+        points = {
+            vector3(-439.07, 6008.22, 37.0)
+        }
+    },
+    {
+        job = "ambulance",
+        coords = vector4(306.81, -598.8, 43.27, 162.86),
+        size = vector3(3, 3, 3),
+        rotation = 45,
+        usePoly = false,
+        points = {
+            vector3(306.81, -598.8, 43.27)
+        }
+    },
+    {
+        job = "sandyems",
+        coords = vector4(1785.53, 3652.24, 34.85, 301.98),
+        size = vector3(3, 3, 3),
+        rotation = 45,
+        usePoly = false,
+        points = {
+            vector3(1785.53, 3652.24, 34.85)
+        }
+    },
+    {
+        job = "mechanic",
+        coords = vector4(883.21, -2101.11, 30.46, 354.91),
+        size = vector3(2, 2, 2),
+        rotation = 45,
+        usePoly = false,
+        points = {
+            vector3(883.21, -2101.11, 30.46)
+        }
+    },
 }
 
 

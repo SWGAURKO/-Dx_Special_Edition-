@@ -152,3 +152,5 @@ function GetCreatedRace(identifier)
     end
     return 0
 end
+
+

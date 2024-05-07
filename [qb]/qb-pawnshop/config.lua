@@ -2,14 +2,14 @@ Config = {}
 
 Config.PawnLocation = {
     [1] = {
-            coords = vector3(412.34, 314.81, 103.13),
+            coords = vector3(174.75, -1322.05, 29.36),
             length = 1.5,
             width = 1.8,
             heading = 207.0,
             debugPoly = false,
-            minZ = 100.97,
+            minZ = 1.97,
             maxZ = 105.42,
-            distance = 3.0
+            distance = 10.0
         },
     }
 
@@ -24,35 +24,35 @@ Config.UseTarget = GetConvar('UseTarget', 'false') == 'true'
 Config.PawnItems = {
     [1] = {
         item = 'goldchain',
-        price = math.random(50,100)
+        price = math.random(50,6780)
     },
     [2] = {
         item = 'diamond_ring',
-        price = math.random(50,100)
+        price = math.random(50,14600)
     },
     [3] = {
         item = 'rolex',
-        price = math.random(50,100)
+        price = math.random(50,7500)
     },
     [4] = {
         item = '10kgoldchain',
-        price = math.random(50,100)
+        price = math.random(50,4350)
     },
     [5] = {
         item = 'tablet',
-        price = math.random(50,100)
+        price = math.random(50,550)
     },
     [6] = {
         item = 'iphone',
-        price = math.random(50,100)
+        price = math.random(50,600)
     },
     [7] = {
         item = 'samsungphone',
-        price = math.random(50,100)
+        price = math.random(50,455)
     },
     [8] = {
         item = 'laptop',
-        price = math.random(50,100)
+        price = math.random(50,725)
     }
 }
 

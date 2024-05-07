@@ -51,33 +51,33 @@ Config.EnableWantedLevel = false
 
 -- To Set This Up visit https://forum.cfx.re/t/how-to-updated-discord-rich-presence-custom-image/157686
 Config.Discord = {
-    ["IsEnabled"] = true, -- If set to true, then discord rich presence will be enabled
-    ["ApplicationId"] = '1205868627774144623', -- The discord application id
-    ["IconLarge"] = 'logo', -- The name of the large icon
-    ["IconLargeHoverText"] = 'NoPixel Inspired', -- The hover text of the large icon
-    ["IconSmall"] = 'verified', -- The name of the small icon
-    ["IconSmallHoverText"] = 'Buy Now', -- The hover text of the small icon
+    ["IsEnabled"] = false, -- If set to true, then discord rich presence will be enabled
+    ["ApplicationId"] = '00000000000000000', -- The discord application id
+    ["IconLarge"] = 'logo_name', -- The name of the large icon
+    ["IconLargeHoverText"] = 'This is a Large icon with text', -- The hover text of the large icon
+    ["IconSmall"] = 'small_logo_name', -- The name of the small icon
+    ["IconSmallHoverText"] = 'This is a Small icon with text', -- The hover text of the small icon
     ["UpdateRate"] = 60000, -- How often the player count should be updated
     ["ShowPlayerCount"] = true, -- If set to true the player count will be displayed in the rich presence
-    ["MaxPlayers"] = 128, -- Maximum amount of players
+    ["MaxPlayers"] = 48, -- Maximum amount of players
     ["Buttons"] = {
         {
-            text = 'Test Server!',
-            url = 'https://discord.gg/RgbBztr5XJ'
+            text = 'First Button!',
+            url = 'fivem://connect/localhost:30120'
         },
         {
-            text = 'Buy Now!',
-            url = 'https://discord.gg/RgbBztr5XJ'
+            text = 'Second Button!',
+            url = 'fivem://connect/localhost:30120'
         }
     }
 }
 
 Config.Density = {
-    ['parked'] = 0.3,
-    ['vehicle'] = 0.5,
-    ['multiplier'] = 0.3,
-    ['peds'] = 0.3,
-    ['scenario'] = 0.3,
+    ['parked'] = 0.8,
+    ['vehicle'] = 0.8,
+    ['multiplier'] = 0.8,
+    ['peds'] = 0.8,
+    ['scenario'] = 0.8,
 }
 
 Config.Stun = {
@@ -86,138 +86,40 @@ Config.Stun = {
     max = 7000
 }
 
-Config.Cruise = 'kmp/h'
+Config.RemovePistolWhipping = true  -- Removes Pistol Whipping
+
+Config.Cruise = 'mp/h'
 Config.IdleCamera = true
 Config.disableHandsupControls = {24, 25, 47, 58, 59, 63, 64, 71, 72, 75, 140, 141, 142, 143, 257, 263, 264}
 Config.DisableAmbience = false -- Disabled distance sirens, distance car alarms, etc
 Config.HarnessUses = 20
-Config.DamageNeeded = 80.0 -- vehiclepush 0-1000
+Config.DamageNeeded = 100.0 -- vehiclepush 0-1000
 Config.EnableProne = false -- prone isnt recomended at this time
-Config.MapText = "Mr_Dx Server" -- This is the name / text shown above the map
+Config.MapText = "QBCore NP 4.0 Inspired - discord.gg/zarevstore" -- This is the name / text shown above the map
 
 Config.Disable = {
-    disableHudComponents = {1, 2, 3, 4, 7, 9, 13, 19, 20, 21, 22, 16}, -- Hud Components: https://docs.fivem.net/natives/?_0x6806C51AD12B83B8
+    disableHudComponents = {1, 2, 3, 4, 7, 9, 13, 14, 19, 20, 21, 22}, -- Hud Components: https://docs.fivem.net/natives/?_0x6806C51AD12B83B8
     disableControls = {37}, -- Controls: https://docs.fivem.net/docs/game-references/controls/
     displayAmmo = true -- false disables ammo display
 }
 
 Config.ConsumablesEat = {
-
     ["sandwich"] = math.random(35, 54),
     ["tosti"] = math.random(40, 50),
     ["twerks_candy"] = math.random(35, 54),
     ["snikkel_candy"] = math.random(40, 50),
-
-    ["burger-bleeder"] = math.random(35, 54),
-    ["burger-moneyshot"] = math.random(36, 55),
-    ["burger-torpedo"] = math.random(37, 56),
-    ["burger-fries"] = math.random(20, 40),
-
-    ["bigmac"] = math.random(15, 20),
-    ["mcchicken"] = math.random(15, 20),--
-    ["quarterpounder"] = math.random(15, 20),
-    ["dquarterpounder"] = math.random(15, 20),--
-    ["filet-o-fish"] = math.random(15, 20),--
-    ["cheeseburger"] = math.random(15, 20),--
-    ["bigmac_meal"] = math.random(25, 40),--
-    ["mcchicken_meal"] = math.random(25, 40),
-    ["quarterpounder_meal"] = math.random(25, 40),
-    ["dquarterpounder_meal"] = math.random(25, 40),
-    ["filet-o-fish_meal"] = math.random(25, 40),
-    ["cheeseburger_meal"] = math.random(25, 40),
-    ["dcheeseburger"] = math.random(15, 20),
-    ["tcheeseburger"] = math.random(15, 20),
-    ["6pnuggets"] = math.random(15, 20),
-    ["10pnuggets"] = math.random(15, 20),
-    ["20pnuggets"] = math.random(15, 20),
-    ["dcheeseburger_meal"] = math.random(25, 40),
-    ["tcheeseburger_meal"] = math.random(25, 40),
-    ["6pnuggets_meal"] = math.random(25, 40),
-    ["10pnuggets_meal"] = math.random(25, 40),
-    ["20pnuggets_meal"] = math.random(25, 40),
-    ["sfries"] = math.random(5, 10),
-    ["mfries"] = math.random(15, 20),
-    ["lfries"] = math.random(20, 25),
-    ["hotapplepie"] = math.random(15, 20),
-
-    ["limeysdonut"] = math.random(10, 25),
-    ["limeysdonut2"] = math.random(10, 25),
-	["limeysgum"] = math.random(10, 25),
-    ["limeyschocolate"] = math.random(10, 25),
-    ["limeyschocolate2"] = math.random(10, 25),
-
-    ["burgershot_bigking"] = math.random(40, 50),
-    ["burgershot_bleeder"] = math.random(20, 30),
-    ["burgershot_goatwrap"] = math.random(50, 60),
-    ["burgershot_macaroon"] = math.random(10, 15),
-    ["burgershot_patatob"] = math.random(15, 20),
-    ["burgershot_patatos"] = math.random(5, 10),
-    ["burgershot_shotnuggets"] = math.random(10, 15),
-    ["burgershot_shotrings"] = math.random(10, 15),
-    ["burgershot_thesmurfsicecream"] = math.random(1, 3),
-    ["burgershot_smurfetteicecream"] = math.random(1, 3),
-    ["burgershot_matchaicecream"] = math.random(1, 3),
-    ["burgershot_ubeicecream"] = math.random(1, 3),
-    ["burgershot_unicornicecream"] = math.random(1, 3),
-    ["burgershot_vanillaicecream"] = math.random(1, 3),
-    ["burgershot_chocolateicecream"] = math.random(1, 3),
-    ["burgershot_strawberryicecream"] = math.random(1, 3),
-
-    ["apple"] = math.random(10, 20),
-    ["beef"] = math.random(35, 50),
-    ["slicedpie"] = math.random(10, 20),
-    ["corncob"] = math.random(25, 40),
-    ["canofcorn"] = math.random(35, 50),
-    ["grapes"] = math.random(10, 20),
-    ["greenpepper"] = math.random(10, 20),
-    ["chillypepper"] = math.random(10, 20),
-    ["tomato"] = math.random(10, 20),
-    ["tomatopaste"] = math.random(25, 40),
-    ["cooked_bacon"] = math.random(35, 50),
-    ["cooked_sausage"] = math.random(35, 50),
-    ["cooked_pork"] = math.random(35, 50),
-    ["cooked_ham"] = math.random(35, 50),
-
 }
 
 Config.ConsumablesDrink = {
     ["water_bottle"] = math.random(35, 54),
     ["kurkakola"] = math.random(35, 54),
     ["coffee"] = math.random(40, 50),
-    ["burger-softdrink"] = math.random(50, 60),
-    ["burger-mshake"] = math.random(52, 54),
-
-    ["ssconef"] = math.random(15, 20),
-    ["sscone"] = math.random(15, 20),
-    ["mflurryo"] = math.random(15, 20),
-    ["mflurrym"] = math.random(15, 20),
-    ["cocacola"] = math.random(20, 30),
-
-    ["cherrydrink"] = math.random(55, 80),
-    ["lemondrink"] = math.random(55, 80),
-    ["limedrink"] = math.random(55, 80),
-    ["orangedrink"] = math.random(55, 80),
-    ["watermelondrink"] = math.random(55, 80),
-
-    ["burgershot_colab"] = math.random(40, 50),
-    ["burgershot_colas"] = math.random(20, 30),
-    ["burgershot_coffee"] = math.random(10, 20),
-
-    ["apple_juice"] = math.random(25, 45),
-    ["grapejuice"] = math.random(25, 45),
-    ["hotsauce"] = math.random(10, 15),
 }
 
 Config.ConsumablesAlcohol = {
     ["whiskey"] = math.random(20, 30),
     ["beer"] = math.random(30, 40),
     ["vodka"] = math.random(20, 40),
-
-    ["paradisecocktail"] = math.random(75, 100),
-    ["cherrycocktail"] = math.random(50, 75),
-    ["applecocktail"] = math.random(50, 75),
-    ["bananacocktail"] = math.random(50, 75),
-    ["kiwicocktail"] = math.random(50, 75),    
 }
 
 -- Custom Consumables hand bones
@@ -276,14 +178,6 @@ Config.BlacklistedScenarios = {
     }
 }
 
--- Anticombatlog
-Config.DrawingTime = 60*1000 --12 seconds
-Config.TextColor = {r=255, g=255,b=255} -- WHITE (Player Data)
-Config.AlertTextColor = {r=255, g=0, b=0} -- RED (Player Left Game)
-Config.LogSystem = true
-Config.UseSteam = false -- If False then use R* License
-Config.LogBotName = "Combatlog"
-
 Config.BlacklistedVehs = {
     [`SHAMAL`] = true,
     [`LUXOR`] = true,
@@ -296,7 +190,7 @@ Config.BlacklistedVehs = {
     [`SAVAGE`] = true,
     [`TITAN`] = true,
     [`RHINO`] = true,
-    [`FIRETRUK`] = false,
+    [`FIRETRUK`] = true,
     [`MULE`] = true,
     [`MAVERICK`] = true,
     [`BLIMP`] = true,
@@ -359,7 +253,14 @@ Config.HolsterableWeapons = {
     'WEAPON_REVOLVER',
     'WEAPON_SNSPISTOL',
     'WEAPON_HEAVYPISTOL',
-    'WEAPON_VINTAGEPISTOL'
+    'WEAPON_VINTAGEPISTOL',
+    'WEAPON_DE',
+	'WEAPON_GLOCK17',
+	'WEAPON_M9',
+	'WEAPON_M1911',
+	'WEAPON_FNX45',
+	'WEAPON_GLOCK18C',
+	'WEAPON_GLOCK22'
 }
 
 Config.Objects = { -- for object removal
@@ -369,23 +270,21 @@ Config.Objects = { -- for object removal
 
 -- You may add more than 2 selections and it will bring up a menu for the player to select which floor be sure to label each section though
 Config.Teleports = {
-    --Elevator @ police heli
     [1] = {
-        [1] = { -- up label
+        [1] = {
             ['poly'] = {
-                coords = vector3(524.4960, -20.7276, 82.7419),
-                heading = 336.7248,
+                coords = vector3(3540.74, 3675.59, 20.99),
+                heading = 167.5,
                 length = 2,
                 width = 2
             },
             ["AllowVehicle"] = false,
-            label = false -- set this to a string for a custom label or leave it false to keep the default
-
+            label = false
         },
-        [2] = { -- down label
+        [2] = {
             ['poly'] = {
-                coords = vector3(566.3307, 4.5213, 103.2331),
-                heading = 267.6347,
+                coords = vector3(3540.74, 3675.59, 28.11),
+                heading = 172.5,
                 length = 2,
                 width = 2
             },

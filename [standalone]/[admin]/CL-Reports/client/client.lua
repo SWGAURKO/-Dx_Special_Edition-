@@ -109,7 +109,7 @@ end)
 
 RegisterKeyMapping("reportissue", 'Reports System', 'keyboard', '9')
 
-RegisterKeyMapping("adminconsole", 'Reports Admin Console', 'keyboard', 'h')
+RegisterKeyMapping("adminconsole", 'Reports Admin Console', 'keyboard', '8')
 
 RegisterCommand("adminconsole", function()
     enableAdminUI = not enableAdminUI

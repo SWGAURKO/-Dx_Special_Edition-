@@ -3,7 +3,7 @@ print("^2Jim^7-^2Mechanic ^7v^42^7.^49^7.^48^3SpamFix ^7- ^2Mechanic Script by ^
 Config = {
 	Lan = "en", -- Pick your language here
 	Debug = false, -- Set to true to show green debug boxes to help track
-	img = "ox_inventory/web/images/", -- Set this to the directory for your inventory image files
+	img = "ps-inventory/html/images/", -- Set this to the directory for your inventory image files
 	JimShops = false, -- If using my free script jim-shops, enable this to use it with the mechanic stores.
 	JimMenu = true, -- If using my free edit of qb-menu enable this.
 	distkph = false, -- Set to false to read distance travelled in Miles.

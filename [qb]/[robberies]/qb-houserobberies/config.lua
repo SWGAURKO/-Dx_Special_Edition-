@@ -17,11 +17,11 @@ Config.MaxRobTIme = 15000 -- Maximum time in ms it takes to steal from a house
 Config.CashChance = 20 -- Chance to get cash as well as an item
 Config.CashMin = 40 -- minimum cash you receive if you roll the cash drop
 Config.CashMax = 80 -- Maximum cash you receive if you roll the cash drop
-Config.Inventoryimagelink = "ox_inventory/web/images/" -- the filepath to where your images sit
+Config.Inventoryimagelink = "ps-inventory/html/images/" -- the filepath to where your images sit
 Config.FenceSpawn = vector4(1552.11, 3603.45, 38.78, 231.85) -- where the fence ped spawns
 Config.FenceWeaponone = "weapon_microsmg" -- what weapon the fence gets when you assault him
 Config.FenceWeapontwo = "weapon_minismg"-- what weapon the fence gets when you assault him
-Config.OxTarget = true
+Config.OxTarget = false
 Config.Rewards = { -- the numbers in boxes translate to which tier of house and their loot. 1 = tier 1,  2 = tier 2, if that doesnt make sense hire a dev
     [1] = {
         cabinet = 	 {"bandage", "diamond_ring", "goldchain", "weed_skunk", "thermite", "cryptostick"},

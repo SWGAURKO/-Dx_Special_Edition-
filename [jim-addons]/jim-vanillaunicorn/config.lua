@@ -8,11 +8,11 @@ Config = {
 	Debug = false,  -- false to remove green boxes
 	PrintDebug = false, -- false to remove f8 debug messages for the script
 
-	img = "ox_inventory/web/images/", -- Change this to your inventory's name and image folder (SET TO "" IF YOU HAVE DOUBLE IMAGES)
+	img = "ps-inventory/html/images/", -- Change this to your inventory's name and image folder (SET TO "" IF YOU HAVE DOUBLE IMAGES)
 	Lan = "en", -- Pick your language here
 
 	Core = "qb-core",
-	Inv = "ox",
+	Inv = "qb",
 	Menu = "qb",
 	Notify = "qb",
 

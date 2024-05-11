@@ -304,7 +304,7 @@ There is little snippets of information on each line for these, but this is a mo
 ### Config.img
 - Use this if if you are using an older/edited version of qb-menu
 - This is for adding images of inventory items to qb-menu and qb-input.
-- The default would be: `ox_inventory/web/images/`
+- The default would be: `ps-inventory/html/images/`
 - I personally use LJ's inventory system which makes it: `lj-inventory/html/images/`. I imagine other's are pretty similar.
 
 ### Config.JimShops

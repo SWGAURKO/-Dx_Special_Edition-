@@ -3,7 +3,7 @@ print("^2Jim^7-^2PizzaThis ^7v^41^7.^46^7.^45 ^7- ^2PizzaThis Job Script by ^1Ji
 Config = {
 	Debug = false,
 	Lan = "en", -- Pick your language here
-	img = "ox_inventory/web/images/", -- Change this to your inventory's name and image folder (SET TO "" IF YOU HAVE DOUBLE IMAGES)
+	img = "ps-inventory/html/images/", -- Change this to your inventory's name and image folder (SET TO "" IF YOU HAVE DOUBLE IMAGES)
 
 	JimConsumables = true, -- Enable this to disable this scripts control of food/drink items
 	JimShop = true, -- If true shops will open in jim-shops

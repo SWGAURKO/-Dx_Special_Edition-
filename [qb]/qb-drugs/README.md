@@ -532,7 +532,7 @@ xtcburner 				     = {name = 'xtcburner', 			    	label = 'ENV Burner', 		    		
 
 - **STEP 2**
 
-	- Add items images to `ox_inventory/web/images`
+	- Add items images to `ps-inventory/html/images`
 
 - **STEP 3**
 

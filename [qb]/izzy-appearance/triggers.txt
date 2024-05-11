@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------
+TriggerEvent('qb-clothes:client:CreateFirstCharacter')
+
+====>
+
+TriggerEvent('sh-creation:client:CreateCharacter')
+--------------------------------------------------------------------------
+exports['illenium-appearance']:setPedAppearance(charPed, skinData)
+
+====>
+
+TriggerEvent('sh-creation:client:loadData', skinData, charPed)
+--------------------------------------------------------------------------

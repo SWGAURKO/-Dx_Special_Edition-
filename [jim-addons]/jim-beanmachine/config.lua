@@ -5,10 +5,10 @@
 Config = {
 	Debug = false,  -- false to remove green boxes
 	Lan = "en", -- change the language
-	img = "ox_inventory/web/images/", -- Change this to your inventory's name and image folder
+	img = "ps-inventory/html/images/", -- Change this to your inventory's name and image folder
 
 	Core = "qb-core", -- set this to your core folder
-	Inv = "ox", -- set to "ox" if using OX Inventory
+	Inv = "qb", -- set to "ox" if using OX Inventory
 	Menu = "qb", -- set to "ox" if using ox_lib context menus
 	Notify = "qb",
 	ProgressBar = "qb", -- set to "ox" if using ox_lib progressbar

@@ -1,0 +1,132 @@
+1 - Stop esx_clothingshop, esx_barbershop, esx_accessories
+2 - Import the sql file
+3 - es_extended -> client -> main.lua
+
+From line 40 to 44
+
+if isNew then
+	TriggerEvent('skinchanger:loadDefaultModel', skin.sex == 0)
+elseif skin then
+	TriggerEvent('skinchanger:loadSkin', skin)
+end
+
+Change these lines with:
+
+if isNew then
+	TriggerEvent('skinchanger:loadDefaultModel', skin.sex == 0)
+elseif skin then
+	ESX.TriggerServerCallback('sh-creation:getCurrentSkinData2', function(skin)
+		local playerPed = PlayerPedId()
+		TriggerEvent('sh-creation:client:loadData', skin, playerPed)
+	end, xPlayer.identifier)
+end
+
+4 - esx_multicharacter -> client -> main.lua
+
+On line 116 change this
+TriggerEvent('skinchanger:loadSkin', skin)
+
+line with
+
+ESX.TriggerServerCallback('sh-creation:getCurrentSkinData2', function(skin)
+	TriggerEvent('sh-creation:client:loadData', skin, PlayerPedId())
+end, Characters[index].identifier)
+
+5 - esx_multicharacter -> client -> main.lua
+
+On line 131 change
+
+TriggerEvent('skinchanger:loadSkin', Characters[index].skin)
+
+this line with
+
+ESX.TriggerServerCallback('sh-creation:getCurrentSkinData2', function(skin)
+	TriggerEvent('sh-creation:client:loadData', skin, PlayerPedId())
+end, Characters[index].identifier)
+
+6 - esx_multicharacter -> client -> main.lua
+
+Around line 276 remove this lines
+
+		if isNew or not skin or #skin == 1 then
+			local finished = false
+			skin = Config.Default[playerData.sex]
+			skin.sex = playerData.sex == "m" and 0 or 1
+			local model = skin.sex == 0 and mp_m_freemode_01 or mp_f_freemode_01
+			RequestModel(model)
+			while not HasModelLoaded(model) do
+				RequestModel(model)
+				Wait(0)
+			end
+			SetPlayerModel(PlayerId(), model)
+			SetModelAsNoLongerNeeded(model)
+			TriggerEvent('skinchanger:loadSkin', skin, function()
+				local playerPed = PlayerPedId()
+				SetPedAoBlobRendering(playerPed, true)
+				ResetEntityAlpha(playerPed)
+				TriggerEvent('esx_skin:openSaveableMenu', function()
+					finished = true
+				end, function()
+					finished = true
+				end)
+			end)
+			repeat Wait(200) until finished
+		end
+
+And around 306 delete this line
+
+if not isNew then TriggerEvent('skinchanger:loadSkin', skin or Characters[spawned].skin) end
+
+7 - esx_multicharacter -> client -> main.lua
+
+Write this codes above Characters, hidePlayers = {}, false line
+
+Looks like:
+
+		if isNew or not skin or #skin == 1 then
+			TriggerEvent('sh-creation:client:CreateCharacter')
+		end
+
+		if not isNew then
+			ESX.TriggerServerCallback('sh-creation:getCurrentSkinData2', function(skin)
+				TriggerEvent('sh-creation:client:loadData', skin, PlayerPedId())
+			end, Characters[spawned].identifier)
+		end
+
+		Characters, hidePlayers = {}, false
+
+8 - esx_multicharacter -> server -> main.lua
+
+On line 79 change these lines with
+Before:
+			characters[id] = {
+				id = id,
+				bank = accounts.bank,
+				money = accounts.money,
+				job = job,
+				job_grade = grade,
+				firstname = v.firstname,
+				lastname = v.lastname,
+				dateofbirth = v.dateofbirth,
+				skin = v.skin and json.decode(v.skin) or {},
+				disabled = v.disabled,
+				sex = v.sex == 'm' and TranslateCap('male') or TranslateCap('female')
+			}
+
+After:
+			characters[id] = {
+				id = id,
+				identifier = v.identifier,
+				bank = accounts.bank,
+				money = accounts.money,
+				job = job,
+				job_grade = grade,
+				firstname = v.firstname,
+				lastname = v.lastname,
+				dateofbirth = v.dateofbirth,
+				skin = v.skin and json.decode(v.skin) or {},
+				disabled = v.disabled,
+				sex = v.sex == 'm' and TranslateCap('male') or TranslateCap('female')
+			}
+
+DONE!

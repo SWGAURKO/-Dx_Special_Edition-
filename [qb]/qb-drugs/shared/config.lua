@@ -6,13 +6,13 @@ Config.rewardItemheroin = "poppyresin"
 Config.rewardshrooms = "shrooms"
 Config.rewardMescaline = "cactusbulb"
 Config.rewardWeed = "wetcannabis"
-Config.oxtarget = true --- turn to true if you use oxtarget
+Config.oxtarget = false --- turn to true if you use oxtarget
 Config.respawnTime = 150 -- Seconds
 Config.Fuel = "cdn-fuel" -- type the name of script you use i.e. ps-fuel, cdn-fuel, cdn-fuel
 Config.OxInv = false -- true if you use ox inventory, false if you use qb/lj/ps
 Config.TierSystem = true -- allows for three tiers of certain drugs ( coke, heroin, crack
 Config.StupidassNewQbItemName = false -- true if you have updated your items.lua from base qb after november 2023 because changing item names this far in a framework is 3 IQ points total
-Config.imagelink = "ox_inventory/web/images/"
+Config.imagelink = "ps-inventory/html/images/"
 
 
 ------------- Cocaine -- new animations require to be in a certain spot or they get fucky. uses bob74 ipl 

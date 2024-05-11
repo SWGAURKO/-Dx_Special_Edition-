@@ -138,7 +138,7 @@ QBConfig.Notify.NotificationStyling = {
 -- The "color" key is background of the notification
 -- The "icon" key is the css-icon code, this project uses `Material Icons` & `Font Awesome`
 QBConfig.Notify.VariantDefinitions = {
-    success = {
+    --[[ success = {
         classes = 'success',
         icon = 'check_circle'
     },
@@ -153,6 +153,26 @@ QBConfig.Notify.VariantDefinitions = {
     error = {
         classes = 'error',
         icon = 'error'
+    },
+    police = {
+        classes = 'police',
+        icon = 'local_police'
+    },
+    ambulance = {
+        classes = 'ambulance',
+        icon = 'fas fa-ambulance'
+    } ]]
+    success = {
+        classes = 'success',
+        icon = 'task_alt'
+    },
+    primary = {
+        classes = 'primary',
+        icon = 'notifications'
+    },
+    error = {
+        classes = 'error',
+        icon = 'warning'
     },
     police = {
         classes = 'police',

@@ -13,7 +13,7 @@ function QBCore.Functions.GetCoords(entity)
 end
 
 function QBCore.Functions.HasItem(items, amount)
-    return exports['qb-inventory']:HasItem(items, amount)
+    return exports['ps-inventory']:HasItem(items, amount)
 end
 
 -- Utility
@@ -176,11 +176,8 @@ function QBCore.Functions.LoadAnimSet(animSet)
     end
 end
 
-RegisterNUICallback('getNotifyConfig', function(_, cb)
-    cb(QBCore.Config.Notify)
-end)
---[[ 
-function QBCore.Functions.Notify(text, texttype, length, icon)
+
+--[[ function QBCore.Functions.Notify(text, texttype, length, icon)
     local message = {
         action = 'notify',
         type = texttype or 'primary',
@@ -199,22 +196,26 @@ function QBCore.Functions.Notify(text, texttype, length, icon)
     end
 
     SendNUIMessage(message)
-end ]]
-function QBCore.Functions.Notify(text, textype, length)
-    if textype == "primary" then textype = 1 end
-    if type(text) == "table" then
-        local ttext = text.text or 'Placeholder'
-        local caption = text.caption or 'Placeholder'
-        local ttype = textype or 1
-        local length = length or 3000
-        exports['meteo-notify']:Alert(textype, text, length)
-    else
-        local ttype = textype or 2
-        local ttext = text.text or 'Placeholder'
-        local length = length or 5000
-        exports['meteo-notify']:Alert(textype, text, length)
-    end
 end
+ ]]
+
+RegisterNUICallback('getNotifyConfig', function(_, cb)
+    cb(QBCore.Config.Notify)
+end)
+
+function QBCore.Functions.Notify(text, texttype, length)
+    length = length or 5000
+    texttype = texttype or 'info'
+
+    if texttype == "primary" then 
+        texttype = "info"
+    end
+
+
+
+    TriggerEvent('ac-lib:notify', text , length, texttype)
+end
+
 
 function QBCore.Debug(resource, obj, depth)
     TriggerServerEvent('QBCore:DebugSomething', resource, obj, depth)

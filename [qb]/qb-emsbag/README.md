@@ -13,4 +13,4 @@ Add this to **qb-core/shared/items.lua**
 	["emsbag"]   	= {["name"] = "emsbag", 		["label"] = "emsbag", 	["weight"] = 150, 		["type"] = "item", 		["image"] = "emsbag.png", 			["unique"] = false,   	["useable"] = true,    ["shouldClose"] = true,    ["combinable"] = nil,   ["description"] = ""},
 
 ```
-Add the image from the images/emsbag.png to your **ox_inventory/web/images/** folder
+Add the image from the images/emsbag.png to your **ps-inventory/html/images/** folder

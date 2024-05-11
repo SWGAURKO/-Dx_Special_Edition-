@@ -3,7 +3,7 @@
 
 **Item**
 
-For the item, a image is included. You simply put this image in your ox_inventory/web/images
+For the item, a image is included. You simply put this image in your ps-inventory/html/images
 
 The item in qb-core/shared.lua:
 ```

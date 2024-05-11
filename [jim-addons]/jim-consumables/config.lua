@@ -8,7 +8,7 @@ Config = {
 	Debug = false,
 	Core = "qb-core",
 
-	Inv = "ox", -- set to "ox" if using ox_inventory
+	Inv = "qb", -- set to "ox" if using ox_inventory
 	Notify = "qb",  -- set to "ox" if using ox_lib
 
 	UseProgbar = true,

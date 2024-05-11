@@ -1,5 +1,5 @@
 Config = {
-    ["Inv-Link"] = "ox_inventory/web/images/", --Set this to your inventory Directory
+    ["Inv-Link"] = "ps-inventory/html/images/", --Set this to your inventory Directory
     ["Weapons"] = {
         ["weapon_pistol"] = { --Item Name
             hash = "weapon_microsmg", --Item Name

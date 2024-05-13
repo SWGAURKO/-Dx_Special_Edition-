@@ -159,7 +159,7 @@ function SpawnVehicle(vehicle, x, y, z, w)
         Citizen.Wait(math.random(5000,10000 ))
         print(randomCoords)
         if Config.Email == true then
-            TriggerServerEvent('qb-phone:server:sendNewMail', {
+            TriggerServerEvent('qs-smartphone:server:sendNewMail', {
                 sender = "Chop Shop",
                 subject = "Vehicle Located",
                 message = "Hello,<br><br> The vehicle you need to collect is a<br><b>" ..

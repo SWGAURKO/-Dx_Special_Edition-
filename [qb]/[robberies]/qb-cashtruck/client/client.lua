@@ -224,7 +224,7 @@ end
 RegisterNetEvent('vrp-rahaauto:client:GotAccess', function ()
     SystemHacked = false
     Wait(1000)
-    TriggerServerEvent('qb-phone:server:sendNewMail', {
+    TriggerServerEvent('qs-smartphone:server:sendNewMail', {
         sender = "Anünüümne",
         subject = 'Tööots',
         message = 'Anonüümne: Yo, saadan sulle tööotsa asukoha, kohtume 2 minuti pärast seal',
@@ -236,7 +236,7 @@ end)
 
 function SetGps()
     Wait(2000)
-    TriggerEvent('qb-phone:client:CustomNotification', 'Ülesanne', "Mine asukohta, mis sulle saadeti", 'fas fa-location-arrow', '#00ffd5', 5500)
+    TriggerEvent('qs-smartphone:client:CustomNotification', 'Ülesanne', "Mine asukohta, mis sulle saadeti", 'fas fa-location-arrow', '#00ffd5', 5500)
     local pedloc = Config.PedLocations[math.random(#Config.PedLocations)]
     if not GuardSpawned then
         meetlocblip = AddBlipForCoord(pedloc)
@@ -265,9 +265,9 @@ function SetGps()
                 TaskWanderInArea(guard, pedloc.x, pedloc.y, pedloc.z, 1.0, 2, 0.2)
 
                 alerted = true
-                TriggerEvent('qb-phone:client:CustomNotification', 'Ülesanne', "Mine asukohta, mis sulle saadeti", 'fas fa-location-arrow', '#00ffd5', 5500)
+                TriggerEvent('qs-smartphone:client:CustomNotification', 'Ülesanne', "Mine asukohta, mis sulle saadeti", 'fas fa-location-arrow', '#00ffd5', 5500)
                 Wait(5500)
-                TriggerEvent('qb-phone:client:CustomNotification', 'Ülesanne', "Tapa turvamees", 'fas fa-user', '#00ffd5', 5500)
+                TriggerEvent('qs-smartphone:client:CustomNotification', 'Ülesanne', "Tapa turvamees", 'fas fa-user', '#00ffd5', 5500)
                 TaskSmartFleePed(guard, PlayerPedId(), 500.0, -1, true, true)
                 QBCore.Functions.Notify("Turvamees sai haisu ninna, tapa ta enne kui mendid tulevad", 'primary')
 
@@ -275,7 +275,7 @@ function SetGps()
                     while DoesEntityExist(guard) do
                         if IsPedDeadOrDying(guard) and not alerted2 then
                             alerted2 = true
-                            TriggerEvent('qb-phone:client:CustomNotification', 'Ülesanne täidetud', "Tapa truvamees", 'fas fa-user', '#00ffd5', 5500)
+                            TriggerEvent('qs-smartphone:client:CustomNotification', 'Ülesanne täidetud', "Tapa truvamees", 'fas fa-user', '#00ffd5', 5500)
                             RemoveBlip(guardblip)
                             exports['qb-target']:AddTargetEntity(guard, {
                                 options = {
@@ -332,7 +332,7 @@ RegisterNetEvent('vrp-rahaauto:client:gettruck', function ()
         }, {}, {}, function() -- Done
             BodySearched = false
             TriggerEvent('animations:client:EmoteCommandStart', {"c"})
-            TriggerEvent('qb-phone:client:CustomNotification', 'Ülesanne', "Peata rahaauto ja tapa turvamehed", 'fas fa-truck-moving', '#00ffd5', 5500)
+            TriggerEvent('qs-smartphone:client:CustomNotification', 'Ülesanne', "Peata rahaauto ja tapa turvamehed", 'fas fa-truck-moving', '#00ffd5', 5500)
             SpawnStuff()
         end, function() -- Cancel
             TriggerEvent('animations:client:EmoteCommandStart', {"c"})
@@ -608,7 +608,7 @@ end)
 function Text()
     SystemHacked = false
     Wait(1000)
-    TriggerServerEvent('qb-phone:server:sendNewMail', {
+    TriggerServerEvent('qs-smartphone:server:sendNewMail', {
         sender = "Anonüümne",
         subject = 'Tööots',
         message = 'Anonüümne: Yo selle tööotsaga tekkis väike jama, kaotasime rahaauto silmist. Saadan sulle umbkaudse raadiuse kus rahaauto võib olla.',
@@ -655,7 +655,7 @@ RegisterNetEvent('banktrucks:policegps', function (x,y,z)
 end)
 
 function SetDrop()
-    TriggerEvent('qb-phone:client:CustomNotification', 'Teade', 'Sõida kuni leiad asukoha', 'fas fa-bars', '#ffffff', 5500)
+    TriggerEvent('qs-smartphone:client:CustomNotification', 'Teade', 'Sõida kuni leiad asukoha', 'fas fa-bars', '#ffffff', 5500)
     CreateThread(function ()
         while DoesEntityExist(Truck) do
             if not GotLocation then
@@ -673,7 +673,7 @@ function SetDrop()
     SetBlipSprite(DropBlip, 440)
     SetBlipColour(DropBlip, 4)
     SetBlipScale(DropBlip, 0.70)
-    TriggerEvent('qb-phone:client:CustomNotification', 'Teade', 'Asukoht märgiti kaardile', 'fas fa-location-arrow', '#ffffff', 5500)
+    TriggerEvent('qs-smartphone:client:CustomNotification', 'Teade', 'Asukoht märgiti kaardile', 'fas fa-location-arrow', '#ffffff', 5500)
     GotMsg = true
 
     DropZone = CircleZone:Create(droploc, 10.0, {

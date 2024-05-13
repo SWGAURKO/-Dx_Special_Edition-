@@ -265,7 +265,7 @@ RegisterNetEvent('razed-cryptomining:client:CheckIfOwnedCrypto', function()
 end)
 
 RegisterNetEvent('razed-cryptomining:client:sendMail', function()
-    TriggerServerEvent('qb-phone:server:sendNewMail', {
+    TriggerServerEvent('qs-smartphone:server:sendNewMail', {
         sender = Config.PurchaseEmailSender,
         subject = Config.PurchaseEmailSubject,
         message = Config.PurchaseEmailText,
@@ -273,7 +273,7 @@ RegisterNetEvent('razed-cryptomining:client:sendMail', function()
 end)
 
 RegisterNetEvent('razed-cryptomining:client:sendGPUMail', function()
-    TriggerServerEvent('qb-phone:server:sendNewMail', {
+    TriggerServerEvent('qs-smartphone:server:sendNewMail', {
         sender = Config.gpuEmailSender,
         subject = Config.gpuEmailSubject,
         message = Config.gpuEmailText,

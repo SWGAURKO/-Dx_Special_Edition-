@@ -238,7 +238,7 @@ newSubMenus = {
     ['general:givenum'] = {
         title = "Give contact",
         icon = "#globe-phone",
-        functionName = "qb-phone:client:GiveContactDetails"
+        functionName = "qs-smartphone:client:GiveContactDetails"
     }, 
     -- vehicle
     ['vehicle:putin'] = {

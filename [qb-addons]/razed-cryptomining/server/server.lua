@@ -95,7 +95,7 @@ if Config.Crypto == 'qb' then
 end
 else if Config.Crypto == 'renewed-phone' then
     if row.balance > 0.01 then 
-        exports['qb-phone']:AddCrypto(src, Config.RenewedCryptoType, row.balance * Config.CryptoWithdrawalFee)
+        exports['qs-smartphone']:AddCrypto(src, Config.RenewedCryptoType, row.balance * Config.CryptoWithdrawalFee)
         row.balance = row.balance - row.balance
         local id = MySQL.update.await('UPDATE cryptominers SET balance = ? WHERE citizenid = ?', {
             0, Player.PlayerData.citizenid

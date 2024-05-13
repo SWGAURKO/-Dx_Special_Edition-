@@ -99,7 +99,7 @@ function enterCasino()
   TriggerEvent("chCasinoWall:enteredCasino") 
   print("Entered Casino area")
   if Config.SendWelcomeMail then
-    TriggerServerEvent('qb-phone:server:sendNewMail', {
+    TriggerServerEvent('qs-smartphone:server:sendNewMail', {
       sender = Config.WelcomeMailsender,
       subject = Config.WelcomeMailsubject,
       message = Config.WelcomeMailmessage,

@@ -44,7 +44,7 @@ AddEventHandler('orbit-chopshop:server:callCops', function(type, bank, streetLab
         description = msg,
     }
     TriggerClientEvent("orbit-chopshop:client:robberyCall", -1, type, bank, streetLabel, coords)
-    TriggerClientEvent("qb-phone:client:addPoliceAlert", -1, alertData)
+    TriggerClientEvent("qs-smartphone:client:addPoliceAlert", -1, alertData)
 end)
 
 RegisterNetEvent("orbit-chopshop:server:rewardplayer")

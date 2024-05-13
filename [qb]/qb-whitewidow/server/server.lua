@@ -327,7 +327,7 @@ AddEventHandler("qb-whitewidow:bill:player", function(playerId, amount)
                             ['@sender'] = biller.PlayerData.charinfo.firstname
                            })
                        end
-                        TriggerClientEvent('qb-phone:RefreshPhone', billed.PlayerData.source)
+                        TriggerClientEvent('qs-smartphone:RefreshPhone', billed.PlayerData.source)
                         TriggerClientEvent('QBCore:Notify', source, 'Invoice Successfully Sent', 'success')
                         TriggerClientEvent('QBCore:Notify', billed.PlayerData.source, 'New Invoice Received')
                     else

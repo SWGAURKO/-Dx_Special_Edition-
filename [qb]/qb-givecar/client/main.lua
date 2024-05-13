@@ -14,7 +14,7 @@ end)
 
 RegisterNetEvent('g-givecar:client:sendText')
 AddEventHandler('g-givecar:client:sendText', function(sender, subject, message)
-    TriggerServerEvent('qb-phone:server:sendNewMail', {
+    TriggerServerEvent('qs-smartphone:server:sendNewMail', {
         sender = sender,
         subject = subject,
         message = message,

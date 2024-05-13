@@ -151,7 +151,7 @@ RegisterNetEvent('qb-lapraces:server:FinishPlayer', function(RaceData, TotalTime
             }
             MySQL.update('UPDATE lapraces SET records = ? WHERE raceid = ?',
                 {json.encode(Races[RaceData.RaceId].Records), RaceData.RaceId})
-            TriggerClientEvent('qb-phone:client:RaceNotify', src, 'You have won the WR from ' .. RaceData.RaceName ..
+            TriggerClientEvent('qs-smartphone:client:RaceNotify', src, 'You have won the WR from ' .. RaceData.RaceName ..
                 ' disconnected with a time of: ' .. SecondsToClock(BLap) .. '!')
         end
     else
@@ -164,7 +164,7 @@ RegisterNetEvent('qb-lapraces:server:FinishPlayer', function(RaceData, TotalTime
         }
         MySQL.update('UPDATE lapraces SET records = ? WHERE raceid = ?',
             {json.encode(Races[RaceData.RaceId].Records), RaceData.RaceId})
-        TriggerClientEvent('qb-phone:client:RaceNotify', src, 'You have won the WR from ' .. RaceData.RaceName ..
+        TriggerClientEvent('qs-smartphone:client:RaceNotify', src, 'You have won the WR from ' .. RaceData.RaceName ..
             ' put down with a time of: ' .. SecondsToClock(BLap) .. '!')
     end
     AvailableRaces[AvailableKey].RaceData = Races[RaceData.RaceId]
@@ -191,7 +191,7 @@ RegisterNetEvent('qb-lapraces:server:FinishPlayer', function(RaceData, TotalTime
         LastRaces[RaceData.RaceId] = nil
         NotFinished[RaceData.RaceId] = nil
     end
-    TriggerClientEvent('qb-phone:client:UpdateLapraces', -1)
+    TriggerClientEvent('qs-smartphone:client:UpdateLapraces', -1)
 end)
 
 RegisterNetEvent('qb-lapraces:server:CreateLapRace', function(RaceName)
@@ -233,7 +233,7 @@ RegisterNetEvent('qb-lapraces:server:JoinRace', function(RaceData)
             AvailableRaces[PreviousRaceKey].RaceData = Races[CurrentRace]
             TriggerClientEvent('qb-lapraces:client:LeaveRace', src, Races[CurrentRace])
         end
-        TriggerClientEvent('qb-phone:client:UpdateLapraces', -1)
+        TriggerClientEvent('qs-smartphone:client:UpdateLapraces', -1)
     end
     Races[RaceId].Waiting = true
     Races[RaceId].Racers[Player.PlayerData.citizenid] = {
@@ -243,11 +243,11 @@ RegisterNetEvent('qb-lapraces:server:JoinRace', function(RaceData)
     }
     AvailableRaces[AvailableKey].RaceData = Races[RaceId]
     TriggerClientEvent('qb-lapraces:client:JoinRace', src, Races[RaceId], AvailableRaces[AvailableKey].Laps)
-    TriggerClientEvent('qb-phone:client:UpdateLapraces', -1)
+    TriggerClientEvent('qs-smartphone:client:UpdateLapraces', -1)
     local creatorsource = QBCore.Functions.GetPlayerByCitizenId(AvailableRaces[AvailableKey].SetupCitizenId).PlayerData
                               .source
     if creatorsource ~= Player.PlayerData.source then
-        TriggerClientEvent('qb-phone:client:RaceNotify', creatorsource,
+        TriggerClientEvent('qs-smartphone:client:RaceNotify', creatorsource,
             string.sub(Player.PlayerData.charinfo.firstname, 1, 1) .. '. ' .. Player.PlayerData.charinfo.lastname ..
                 ' the race has been joined!')
     end
@@ -267,7 +267,7 @@ RegisterNetEvent('qb-lapraces:server:LeaveRace', function(RaceData)
     local creatorsource = QBCore.Functions.GetPlayerByCitizenId(AvailableRaces[AvailableKey].SetupCitizenId).PlayerData
                               .source
     if creatorsource ~= Player.PlayerData.source then
-        TriggerClientEvent('qb-phone:client:RaceNotify', creatorsource,
+        TriggerClientEvent('qs-smartphone:client:RaceNotify', creatorsource,
             string.sub(Player.PlayerData.charinfo.firstname, 1, 1) .. '. ' .. Player.PlayerData.charinfo.lastname ..
                 ' the race has been delivered!')
     end
@@ -335,7 +335,7 @@ RegisterNetEvent('qb-lapraces:server:LeaveRace', function(RaceData)
         AvailableRaces[AvailableKey].RaceData = Races[RaceId]
         TriggerClientEvent('qb-lapraces:client:LeaveRace', src, Races[RaceId])
     end
-    TriggerClientEvent('qb-phone:client:UpdateLapraces', -1)
+    TriggerClientEvent('qs-smartphone:client:UpdateLapraces', -1)
 end)
 
 RegisterNetEvent('qb-lapraces:server:SetupRace', function(RaceId, Laps)
@@ -350,7 +350,7 @@ RegisterNetEvent('qb-lapraces:server:SetupRace', function(RaceId, Laps)
                     RaceId = RaceId,
                     SetupCitizenId = Player.PlayerData.citizenid
                 }
-                TriggerClientEvent('qb-phone:client:UpdateLapraces', -1)
+                TriggerClientEvent('qs-smartphone:client:UpdateLapraces', -1)
                 SetTimeout(5 * 60 * 1000, function()
                     if Races[RaceId].Waiting then
                         local AvailableKey = GetOpenedRaceKey(RaceId)
@@ -367,7 +367,7 @@ RegisterNetEvent('qb-lapraces:server:SetupRace', function(RaceId, Laps)
                         Races[RaceId].Started = false
                         Races[RaceId].Waiting = false
                         LastRaces[RaceId] = nil
-                        TriggerClientEvent('qb-phone:client:UpdateLapraces', -1)
+                        TriggerClientEvent('qs-smartphone:client:UpdateLapraces', -1)
                     end
                 end)
             else
@@ -403,7 +403,7 @@ RegisterNetEvent('qb-lapraces:server:CancelRace', function(raceId)
             Races[raceId].Started = false
             Races[raceId].Waiting = false
             LastRaces[raceId] = nil
-            TriggerClientEvent('qb-phone:client:UpdateLapraces', -1)
+            TriggerClientEvent('qs-smartphone:client:UpdateLapraces', -1)
         end
     else
         TriggerClientEvent('QBCore:Notify', src, 'Race not open: ' .. raceId, 'error')
@@ -442,7 +442,7 @@ RegisterNetEvent('qb-lapraces:server:StartRace', function(RaceId)
                     TriggerClientEvent('qb-lapraces:client:RaceCountdown', Player.PlayerData.source)
                 end
             end
-            TriggerClientEvent('qb-phone:client:UpdateLapraces', -1)
+            TriggerClientEvent('qs-smartphone:client:UpdateLapraces', -1)
         else
             TriggerClientEvent('QBCore:Notify', src, 'You are not the creator of the race..', 'error')
         end
@@ -547,7 +547,7 @@ QBCore.Commands.Add("cancelrace", "Cancel going race..", {}, false, function(sou
                 Races[RaceId].Started = false
                 Races[RaceId].Waiting = false
                 LastRaces[RaceId] = nil
-                TriggerClientEvent('qb-phone:client:UpdateLapraces', -1)
+                TriggerClientEvent('qs-smartphone:client:UpdateLapraces', -1)
             else
                 TriggerClientEvent('QBCore:Notify', source, 'This race has not started yet.', 'error')
             end

@@ -137,7 +137,7 @@ local function RequestDelivery()
 		
         TriggerServerEvent('md-drugs:server:giveDeliveryItems', waitingDelivery)
         SetTimeout(2000, function()
-           TriggerServerEvent('qb-phone:server:sendNewMail', {
+           TriggerServerEvent('qs-smartphone:server:sendNewMail', {
                sender = QBConfig.Dealers[currentDealer]["name"],
                subject = "Delivery Location",
                message = "Deliver This For Me",
@@ -342,19 +342,19 @@ end)
 
 RegisterNetEvent('md-drugs:client:sendDeliveryMail', function(type, deliveryData)
     if type == 'perfect' then
-        TriggerServerEvent('qb-phone:server:sendNewMail', {
+        TriggerServerEvent('qs-smartphone:server:sendNewMail', {
             sender = QBConfig.Dealers[deliveryData["dealer"]]["name"],
             subject = "Delivery",
             message = "You did it"
         })
     elseif type == 'bad' then
-        TriggerServerEvent('qb-phone:server:sendNewMail', {
+        TriggerServerEvent('qs-smartphone:server:sendNewMail', {
             sender = QBConfig.Dealers[deliveryData["dealer"]]["name"],
             subject = "Delivery",
             message = "You Fucked Me Over"
         })
     elseif type == 'late' then
-        TriggerServerEvent('qb-phone:server:sendNewMail', {
+        TriggerServerEvent('qs-smartphone:server:sendNewMail', {
             sender = QBConfig.Dealers[deliveryData["dealer"]]["name"],
             subject = "Delivery",
             message = "Better Late Than Dead"

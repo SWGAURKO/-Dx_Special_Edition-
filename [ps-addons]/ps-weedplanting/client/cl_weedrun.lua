@@ -110,7 +110,7 @@ end
 local createNewDropOff = function()
     if hasDropOff then return end
     hasDropOff = true
-    TriggerEvent('qb-phone:client:CustomNotification', _U('weedrun_delivery_title'), _U('weedrun_delivery_godropoff'), 'fas fa-cannabis', '#00FF00', 8000)
+    TriggerEvent('qs-smartphone:client:CustomNotification', _U('weedrun_delivery_title'), _U('weedrun_delivery_godropoff'), 'fas fa-cannabis', '#00FF00', 8000)
     local randomLoc = Shared.DropOffLocations[math.random(#Shared.DropOffLocations)]
     createDropOffBlip(randomLoc)
     dropOffArea = CircleZone:Create(randomLoc.xyz, 85.0, {
@@ -121,7 +121,7 @@ local createNewDropOff = function()
 	dropOffArea:onPlayerInOut(function(isPointInside, point)
 		if isPointInside then
 			if not deliveryPed then
-				TriggerEvent('qb-phone:client:CustomNotification', _U('weedrun_delivery_title'), _U('weedrun_delivery_makedropoff'), 'fas fa-cannabis', '#00FF00', 8000)
+				TriggerEvent('qs-smartphone:client:CustomNotification', _U('weedrun_delivery_title'), _U('weedrun_delivery_makedropoff'), 'fas fa-cannabis', '#00FF00', 8000)
 				createDropOffPed(randomLoc)
 			end
 		end
@@ -217,7 +217,7 @@ end)
 RegisterNetEvent('ps-weedplanting:client:ClockIn', function()
     if delivering then return end
     delivering = true
-    TriggerEvent('qb-phone:client:CustomNotification', _U('weedrun_delivery_title'), _U('weedrun_delivery_waitfornew'), 'fas fa-cannabis', '#00FF00', 8000)
+    TriggerEvent('qs-smartphone:client:CustomNotification', _U('weedrun_delivery_title'), _U('weedrun_delivery_waitfornew'), 'fas fa-cannabis', '#00FF00', 8000)
     Wait(math.random(Shared.DeliveryWaitTime[1], Shared.DeliveryWaitTime[2]))
     createNewDropOff()
 end)
@@ -280,7 +280,7 @@ RegisterNetEvent('ps-weedplanting:client:DeliverWeed', function()
 		dropOffBlip = nil
 		dropOffArea:destroy()
 		Wait(2000)
-		TriggerEvent('qb-phone:client:CustomNotification', _U('weedrun_delivery_title'), _U('weedrun_delivery_success'), 'fas fa-cannabis', '#00FF00', 20000)
+		TriggerEvent('qs-smartphone:client:CustomNotification', _U('weedrun_delivery_title'), _U('weedrun_delivery_success'), 'fas fa-cannabis', '#00FF00', 20000)
         ClearPedTasks(ped)
 		
         -- Delete Delivery Ped

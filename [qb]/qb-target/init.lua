@@ -142,7 +142,7 @@ Config.GlobalPlayerOptions = {
     options = {
         {
             type = "client",
-            event = "qb-phone:client:GiveContactDetails",
+            event = "qs-smartphone:client:GiveContactDetails",
             icon = "fas fa-address-book",
             label = "Give Contact Details",
         },

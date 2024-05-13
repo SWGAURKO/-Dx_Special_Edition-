@@ -34,7 +34,7 @@ Config = {
 	PreviewJob = false, -- Enable this if you want /preview to require a Job Role
 	PreviewLocation = true, -- Enable this if you want to lock /preview to a job location (ignored if LocationRequired is false)
 
-	PhoneMail = "qb", 	-- If PreviewPhone is true, change this to choose the correct phone system
+	PhoneMail = "qs", 	-- If PreviewPhone is true, change this to choose the correct phone system
 						-- "qb" = use qb-phone for emails
 						-- "gks" = use gks-phone for emails
 						-- "qs" = use qs-smartphone for emails

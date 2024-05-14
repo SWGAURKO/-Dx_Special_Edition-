@@ -4,7 +4,7 @@ game 'gta5'
 
 lua54 'yes'
 
-version '1.2.2'
+version '5.2.2'
 
 this_is_a_map 'yes'
 

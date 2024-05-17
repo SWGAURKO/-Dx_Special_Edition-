@@ -170,7 +170,7 @@ RegisterNUICallback("testDrive", function(data,cb)
             DoScreenFadeOut(1000)
             Wait(2000)
             TriggerServerEvent("vehicleshop:testdrive", netID)
-            SetEntityCoords(PlayerPedId(), vector3(-31.46917, -1104.683, 26 - 0.5))
+            SetEntityCoords(PlayerPedId(), vector3(-52.2, -1104.81, 27.26 - 0.5))
             DoScreenFadeIn(500)
         end
     end, Config.TestDrive.testDriveCost)

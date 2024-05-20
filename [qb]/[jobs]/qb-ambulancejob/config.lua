@@ -1,9 +1,9 @@
 Config = {}
 Config.UseTarget = GetConvar('UseTarget', 'false') == 'true' -- Use qb-target interactions (don't change this, go to your server.cfg and add setr UseTarget true)
 Config.Debug = false -- Enables DebugPoly
-Config.MinimalDoctors = 2 -- How many players with the ambulance job to prevent the hospital check-in system from being used
+Config.MinimalDoctors = 4 -- How many players with the ambulance job to prevent the hospital check-in system from being used
 Config.DocCooldown = 1 -- Cooldown between doctor calls allowed, in minutes
-Config.WipeInventoryOnRespawn = true -- Enable or disable removing all the players items when they respawn at the hospital
+Config.WipeInventoryOnRespawn = false -- Enable or disable removing all the players items when they respawn at the hospital
 Config.BillCost = 300 -- Price that players are charged for using the hospital check-in system
 Config.DeathTime = 30 -- How long the timer is for players to bleed out completely and respawn at the hospital
 Config.PainkillerInterval = 60 -- Set the length of time painkillers last (per one)
@@ -28,7 +28,7 @@ Config.LegInjuryChance = { -- The chance, in percent, that leg injury side-effec
     Running = 50,
     Walking = 15
 }
-Config.ReviveInterval = 360 
+Config.ReviveInterval = 180 
 Config.MinimumRevive = 30
 Config.MajorArmoredBleedChance = 45 -- The chance, in percent, that a player will get a bleed effect when taking heavy damage while wearing armor
 Config.MaxInjuryChanceMulti = 3 -- How many times the HealthDamage value above can divide into damage taken before damage is forced to be applied
@@ -39,12 +39,15 @@ Config.FuelScript = 'cdn-fuel' -- Fuel script u use (defaut: qb-fuel)
 Config.Bag = {
 	Job = {
         "ambulance",
-        "police"
+        "police",
+        "sast",
+        "sheriff",
+        "bcso",
     }
 }
 Config.Stash = {
-	MaxWeighStash = 5000,
-	MaxSlotsStash = 25,
+	MaxWeighStash = 50000,
+	MaxSlotsStash = 50,
 }
 
 
@@ -68,66 +71,55 @@ Config.CheckingPed = 's_m_m_paramedic_01'
 
 Config.Locations = { -- Edit the various interaction points for players or create new ones
     ["checking"] = {
-	    [1] = vector4(310.29, -582.6, 43.27, 70.12), -- LSPD
-	    [2] = vector4(1767.71, 3640.12, 34.85, 159.52), -- Sandy Hospital
-        [3] = vector4(-253.98, 6330.74, 32.43, 43.04), -- Paleto Hospital
+	    [1] = vector4(302.04, -591.13, 43.27, 339.94),
+	    [2] = vector3(1841.65, 3679.69, 34.28), -- sandy
     },
     ["duty"] = {
-        [1] = vector4(312.90, -581.10, 43.27, 59.02),
-        [2] = vector4(1769.40, 3641.60, 34.85, 118.51),
-        [3] = vector4(-256.15, 6328.58, 32.43, 45.11), -- Paleto Hospital
+        [1] = vector3(315.3, -593.71, 43.28),
+        [2] = vector3(-254.88, 6324.5, 32.58),
     },
     ["vehicle"] = { --not 100% done, vehspawn loc
         [1] = {
-            vehspawn = vector4(0.0, 0.0, 0.0, 0.0 ),
-            pedspawn = vector4(0.0, 0.0, 0.0, 0.0 ),
+           vehspawn = vector4(316.0816, -578.0820, 28.7969, 252.7542),
+           pedspawn = vector4(339.41, -574.55, 28.8, 342.8)
         },
     },
     ["helicopter"] = {
         [1] = {
-            vehspawn = vector4(351.82, -588.13, 74.17, 332.88),
-            pedspawn = vector4(337.67, -586.66, 74.17, 253.94),
+            vehspawn = vector4(0.0, 0.0, 0.0, 0.0 ),
+            pedspawn = vector4(0.0, 0.0, 0.0, 0.0 ),
         }
     },
     ["armory"] = {
-        [1] = vector4(327.05, -589.99, 43.27, 158.87),
-        [2] = vector4(1768.55, 3643.70, 34.85, 120.98),
-        [3] = vector4(-252.82, 6318.69, 32.43, 139.69),
+        [1] = vector4(325.51, -584.09, 43.27, 163.2),
+        [2] = vector3(1824.2, 3666.49, 35.27),
     },
     ["roof"] = {
         [1] = vector4(338.5, -583.85, 74.16, 245.5),
     },
     ["main"] = {
-        [1] = vector3(335.14, -588.69, 43.27),
+        [1] = vector3(326.55, -570.0, 48.21),
     },
     ["basement"] = {
-        [1] = vector3(325.4, -583.96, 28.85),
+        [1] = vector3(317.0, -579.21, 43.27),
     },
     ["stash"] = {
-        [1] = vector3(314.80, -582.65, 44.27),
-        [2] = vector3(1764.25, 3649.65, 35.66),
-        [3] = vector3(-248.30, 6326.04, 33.50),
+        [1] = vector3(297.89, -592.55, 43.27),
     },
     ["beds"] = {
-    --- Pillbox Hospital    
-        [1] = {coords = vector4(321.33, -581.38, 44.12, 165.27), taken = false, model = -421052012},
-        [2] = {coords = vector4(327.63, -583.7, 44.12, 163.62), taken = false, model = -421052012},
-        [3] = {coords = vector4(330.77, -584.71, 44.12, 166.54), taken = false, model = -421052012},
-        [4] = {coords = vector4(328.41, -588.92, 44.12, 352.49), taken = false, model = -421052012},
-        [5] = {coords = vector4(325.54, -587.99, 44.12, 350.07), taken = false, model = -421052012},
-        [6] = {coords = vector4(322.67, -586.78, 44.12, 342.31), taken = false, model = -421052012},
-        [7] = {coords = vector4(316.82, -584.69, 44.12, 341.13), taken = false, model = -421052012},
-        [8] = {coords = vector4(319.77, -585.66, 44.12, 339.93), taken = false, model = -421052012},
-	--- Sandy Hospital
-	    [10] = {coords = vector4(1738.71, 3629.41, 35.69, 302.71), taken = false, model = 2117668672},
-        [11] = {coords = vector4(1740.2, 3626.8, 35.69, 303.4), taken = false, model = 2117668672},
-        [12] = {coords = vector4(1741.38, 3624.69, 35.69, 304.15), taken = false, model = 2117668672},
-        [13] = {coords = vector4(1736.87, 3632.35, 35.69, 301.81), taken = false, model = 2117668672},
-        [14] = {coords = vector4(1735.35, 3634.94, 35.69, 302.35), taken = false, model = 2117668672},
-        [15] = {coords = vector4(1733.76, 3637.68, 35.69, 305.56), taken = false, model = 2117668672},
-    --- Paleto Hospital
-	    [16] = {coords = vector4(-255.67, 6311.73, 33.36, 228.24), taken = false, model = 2117668672},
-        [17] = {coords = vector4(-258.26, 6309.05, 33.36, 226.25), taken = false, model = 2117668672},
+        [1] = {coords = vector4(318.32, -571.89, 49.12, 344.01), taken = false, model = 1631638868},
+        [2] = {coords = vector4(315.0, -570.88, 49.12, 337.98), taken = false, model = 1631638868},
+        [3] = {coords = vector4(316.65, -566.49, 49.12, 158.24), taken = false, model = 2117668672},
+        [4] = {coords = vector4(319.88, -567.63, 49.12, 169.79), taken = false, model = 2117668672},
+        [5] = {coords = vector4(323.16, -568.76, 49.12, 162.67), taken = false, model = 2117668672},
+
+    --[[         [6] = {coords = vector4(360.32, -587.19, 43.02, 152.08), taken = false, model = -1091386327},
+        [7] = {coords = vector4(349.82, -583.33, 43.02, 152.08), taken = false, model = -1091386327},
+        [8] = {coords = vector4(326.98, -576.17, 43.02, 152.08), taken = false, model = -1091386327}, ]]
+	--- paleto
+	  --  [9] = {coords = vector4(1823.85, 3672.49, 35.19, 28.43), taken = false, model = 2117668672},
+       -- [10] = {coords = vector4(1823.51, 3679.74, 35.19, 202.6), taken = false, model = 2117668672},
+      --  [11] = {coords = vector4(1820.85, 3670.8, 35.19, 29.04), taken = false, model = 2117668672},
     },
     ["jailbeds"] = {
         [1] = {coords = vector4(1761.96, 2597.74, 45.66, 270.14), taken = false, model = 2117668672},
@@ -136,9 +128,7 @@ Config.Locations = { -- Edit the various interaction points for players or creat
         [4] = {coords = vector4(1771.85, 2591.85, 45.66, 91.51), taken = false, model = 2117668672},
     },
     ["stations"] = {
-        [1] = {label = "Pillbox Hospital", coords = vector4(304.27, -600.33, 43.28, 272.249)},
-        [2] = {label = "Sandy Hospital", coords = vector4(1767.06, 3639.69, 34.85, 31.33)},
-        [3] = {label = "Paleto Hospital", coords = vector4(-256.47, 6317.2, 32.43, 225.96)},
+        [1] = {label = Lang:t('info.pb_hospital'), coords = vector4(304.27, -600.33, 43.28, 272.249)}
     }
 }
 
@@ -146,8 +136,11 @@ Config.Helicopters = {
 	["Polmav"] = "polmav",
 }
 
-Config.VehicleTable = {
-
+Config.VehicleTable = 
+{
+    --[[ ["ambulances"] = {
+        "f450ambo",
+    }, ]]
 }
 
 Config.CarItems = {
@@ -173,6 +166,95 @@ Config.CarItems = {
         slot = 3,
     },
 }
+
+--[[ Config.Items = { -- Items found in the ambulance shop for players with the ambulance job to purchase
+    label = Lang:t('info.safe'),
+    slots = 30,
+    items = {
+        [1] = {
+            name = "radio",
+            price = 0,
+            amount = 50,
+            info = {},
+            type = "item",
+            slot = 1,
+        },
+        [2] = {
+            name = "bandage",
+            price = 0,
+            amount = 50,
+            info = {},
+            type = "item",
+            slot = 2,
+        },
+        [3] = {
+            name = "painkillers",
+            price = 0,
+            amount = 50,
+            info = {},
+            type = "item",
+            slot = 3,
+        },
+        [4] = {
+            name = "firstaid",
+            price = 0,
+            amount = 50,
+            info = {},
+            type = "item",
+            slot = 4,
+        },
+        [5] = {
+            name = "weapon_flashlight",
+            price = 0,
+            amount = 50,
+            info = {},
+            type = "item",
+            slot = 5,
+        },
+        [6] = {
+            name = "weapon_fireextinguisher",
+            price = 0,
+            amount = 50,
+            info = {},
+            type = "item",
+            slot = 6,
+        },        
+		[7] = {
+            name = "mdt",
+            price = 0,
+            amount = 50,
+            info = {},
+            type = "item",
+            slot = 7,
+        },		
+		[8] = {
+            name = "emsbag",
+            price = 0,
+            amount = 50,
+            info = {},
+            type = "item",
+            slot = 8,
+        },
+
+        [9] = {
+            name = "handcuffs",
+            price = 0,
+            amount = 50,
+            info = {},
+            type = "item",
+            slot = 9,
+        },	
+        [10] = {
+            name = "weapon_stungun",
+            price = 0,
+            amount = 50,
+            info = {},
+            type = "item",
+            slot = 10,
+        },	
+		
+    }
+} ]]
 
 Config.Items = { -- Items found in the ambulance shop for players with the ambulance job to purchase
     label = Lang:t('info.safe'),
@@ -292,6 +374,8 @@ Config.Items = { -- Items found in the ambulance shop for players with the ambul
         },
     }
 }
+
+
 
 Config.WeaponClasses = { -- Define gta weapon classe numbers
     ['SMALL_CALIBER'] = 1,
@@ -494,47 +578,44 @@ Config.BoneIndexes = { -- Correspond bone labels to their hash number
 
 Config.Weapons = { -- Correspond weapon names to their class number
 
-    -- custom weapons
     
-    --[[ HIGH CALIBER ]]
-    -- GGC Custom Weapons -- Rifles
-    [`WEAPON_MK47FM`] = Config.WeaponClasses['HIGH_CALIBER'],
-    [`WEAPON_M6IC`] = Config.WeaponClasses['HIGH_CALIBER'],
-    [`WEAPON_SCARSC`] = Config.WeaponClasses['HIGH_CALIBER'],
-    [`WEAPON_M4`] = Config.WeaponClasses['HIGH_CALIBER'],
-    [`WEAPON_AK47`] = Config.WeaponClasses['HIGH_CALIBER'],
-    [`WEAPON_AK74`] = Config.WeaponClasses['HIGH_CALIBER'],
-    [`WEAPON_AKS74`] = Config.WeaponClasses['HIGH_CALIBER'],
-    [`WEAPON_GROZA`] = Config.WeaponClasses['HIGH_CALIBER'],
-    [`WEAPON_SCARH`] = Config.WeaponClasses['HIGH_CALIBER'],
-    --[[ MEDIUM CALIBER ]]
-    -- GGC Custom Weapons -- SMGs
-    [`WEAPON_PMXFM`] = Config.WeaponClasses['MEDIUM_CALIBER'],
-    [`WEAPON_MAC10`] = Config.WeaponClasses['MEDIUM_CALIBER'],
-    --[[ SMALL CALIBER ]]
-    -- GGC Custom Weapons -- Hand Guns
-    [`WEAPON_GLOCK17`] = Config.WeaponClasses['SMALL_CALIBER'],
-    [`WEAPON_GLOCK18C`] = Config.WeaponClasses['SMALL_CALIBER'],
-    [`WEAPON_GLOCK22`] = Config.WeaponClasses['SMALL_CALIBER'],
-    [`WEAPON_DEAGLE`] = Config.WeaponClasses['SMALL_CALIBER'],
-    [`WEAPON_FNX45`] = Config.WeaponClasses['SMALL_CALIBER'],
-    [`WEAPON_M1911`] = Config.WeaponClasses['SMALL_CALIBER'],
-    [`WEAPON_GLOCK20`] = Config.WeaponClasses['SMALL_CALIBER'],
-    [`WEAPON_GLOCK19GEN4`] = Config.WeaponClasses['SMALL_CALIBER'],
-    --[[ SHOTGUN ]]
-    --[[ CUTTING ]]
-    -- GGC Custom Weapons -- Melees
-    [`WEAPON_KATANA`] = Config.WeaponClasses['CUTTING'],
-    [`WEAPON_SHIV`] = Config.WeaponClasses['CUTTING'],
-    [`WEAPON_KARAMBIT`] = Config.WeaponClasses['CUTTING'],
-    --[[ HEAVY IMPACT ]]
-    -- GGC Custom Weapons -- Melees
-    [`WEAPON_SLEDGEHAMMER`] = Config.WeaponClasses['HEAVY_IMPACT'],
-    [`WEAPON_KEYBOARD`] = Config.WeaponClasses['HEAVY_IMPACT'],
     --[[ Lethals ]]--
 
     -----------------------
-    
+        --[[ HIGH CALIBER ]]
+        [`WEAPON_groza`] = Config.WeaponClasses['HIGH_CALIBER'],
+        [`WEAPON_gepard`] = Config.WeaponClasses['HIGH_CALIBER'],
+        [`WEAPON_draco`] = Config.WeaponClasses['HIGH_CALIBER'],
+        [`WEAPON_m4`] = Config.WeaponClasses['HIGH_CALIBER'],
+        [`WEAPON_hk416b`] = Config.WeaponClasses['HIGH_CALIBER'],
+        --[[ MEDIUM CALIBER ]]
+        [`WEAPON_uzi`] = Config.WeaponClasses['MEDIUM_CALIBER'],
+        [`WEAPON_mac10`] = Config.WeaponClasses['MEDIUM_CALIBER'],
+        [`WEAPON_mp9`] = Config.WeaponClasses['MEDIUM_CALIBER'],
+        [`WEAPON_mp5`] = Config.WeaponClasses['MEDIUM_CALIBER'],
+        [`weapon_vector`] = Config.WeaponClasses['MEDIUM_CALIBER'],
+        --[[ SMALL CALIBER ]]
+        [`WEAPON_browning`] = Config.WeaponClasses['SMALL_CALIBER'],
+        [`WEAPON_M4a1`] = Config.WeaponClasses['SMALL_CALIBER'],
+        [`WEAPON_M45a1`] = Config.WeaponClasses['SMALL_CALIBER'],
+        [`WEAPON_dp9`] = Config.WeaponClasses['SMALL_CALIBER'],
+        [`WEAPON_g18c`] = Config.WeaponClasses['SMALL_CALIBER'],
+        [`WEAPON_glock22`] = Config.WeaponClasses['SMALL_CALIBER'],
+        [`WEAPON_p226`] = Config.WeaponClasses['SMALL_CALIBER'],
+        [`WEAPON_tec9`] = Config.WeaponClasses['SMALL_CALIBER'],
+        --[[ CUTTING ]]
+        [`WEAPON_riftedge`] = Config.WeaponClasses['CUTTING'],
+        [`WEAPON_KATANA`] = Config.WeaponClasses['CUTTING'],
+        [`WEAPON_krambit`] = Config.WeaponClasses['CUTTING'],
+        [`WEAPON_sword`] = Config.WeaponClasses['CUTTING'],
+        --[[ HEAVY IMPACT ]]
+        [`WEAPON_dildo`] = Config.WeaponClasses['HEAVY_IMPACT'],
+        [`WEAPON_keyboard`] = Config.WeaponClasses['HEAVY_IMPACT'],
+        [`weapon_sledgehammer`] = Config.WeaponClasses['HEAVY_IMPACT'],
+        --[[Explosives]]--
+        [`WEAPON_M67`] = Config.WeaponClasses['EXPLOSIVE'],
+        --[[ Shotguns ]]--
+        [`WEAPON_BEANBAG`] = Config.WeaponClasses['SHOTGUN'],
     [`WEAPON_STUNGUN`] = Config.WeaponClasses['NONE'],
     [`WEAPON_STUNGUN_MP`] = Config.WeaponClasses['NONE'],
     [`WEAPON_BEANGBAGSHOTGUN`] = Config.WeaponClasses['NONE'],
@@ -656,7 +737,12 @@ Config.Weapons = { -- Correspond weapon names to their class number
     [`WEAPON_BZGAS`] = Config.WeaponClasses['SUFFOCATING'],
     [`WEAPON_SMOKEGRENADE`] = Config.WeaponClasses['SUFFOCATING'],
     --[[ HIGH CALIBER ]]
-    -- GGC Custom Weapons -- Rifles
+
+
+
+
+
+ -- GGC Custom Weapons -- Rifles
     [`WEAPON_MK47FM`] = Config.WeaponClasses['HIGH_CALIBER'],
     [`WEAPON_M6IC`] = Config.WeaponClasses['HIGH_CALIBER'],
     [`WEAPON_SCARSC`] = Config.WeaponClasses['HIGH_CALIBER'],

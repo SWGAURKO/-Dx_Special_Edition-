@@ -442,6 +442,16 @@ QBCore.Commands.Add('aheal', Lang:t('info.heal_player_a'), {{name = 'id', help =
 	end
 end, 'admin')
 
+
+RegisterNetEvent('hospital:revivemoney', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+
+	    Player.Functions.AddMoney('cash', '100', "Give Treatment")
+        TriggerClientEvent('QBCore:Notify', src, 'You Got $100 For Your Treatment', "primary")
+end)
+
+
 -- Items
 
 QBCore.Functions.CreateUseableItem("ifaks", function(source, item)
